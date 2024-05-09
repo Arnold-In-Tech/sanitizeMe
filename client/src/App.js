@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import AboutUs from './AboutUs.js';
 
 function App() {
   return (
@@ -18,8 +19,11 @@ function App() {
           Learn React
         </a>
       </header>
+      {/* Render the AboutUs component */}
+      <AboutUs />
     </div>
   );
 }
+
 
 export default App;
