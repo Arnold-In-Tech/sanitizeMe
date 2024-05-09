@@ -73,11 +73,13 @@ class Charity(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     charity_description =  db.Column(db.String, nullable=False)
+    organizer_name = db.Column(db.String, nullable=False)
     location = db.Column(db.String, nullable=False)
     period =  db.Column(db.String, nullable=False)
     administrator_id = db.Column(db.Integer, db.ForeignKey('administrators.id'))  
     donor_id = db.Column(db.Integer, db.ForeignKey('donors.id'))  
-
+    status = db.Column(db.String, nullable=False)
+    
     administrator = db.relationship('Administrator', back_populates="charities")
     donor = db.relationship('Donor', back_populates="charities")
     stories = db.relationship("Story", back_populates="charity")
