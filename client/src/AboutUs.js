@@ -9,10 +9,16 @@ const AboutUs = () => {
             <p>
                 SanitizeMe is a passion-driven initiative dedicated to empowering school girls in sub-Saharan Africa by providing access to sanitary towels and other essential supplies needed for their periods. We believe that every girl deserves the opportunity to pursue her education without the barrier of period poverty.
             </p>
+            <ul>
+                <li><a href="https:/Build-a-school">Help Build a School</a></li>
+                <li><a href="https:/clean-water-for-Africa">Help Clean Water for Africa</a></li>
+                <li><a href="https:/Help-Arumbe-Village ">Help Arumbe Village</a></li>
+            </ul>
+            <p><a href="https:/Read-more">Read more</a></p>
             <h3>SarnitizMe</h3>
             <h3>Statistics</h3>
             <p>+618 Donations</p>
-            
+
             <h3>Frequently Asked Questions</h3>
             <ul>
                 <li><strong>What is SanitizeMe?</strong> - SanitizeMe is a passion-driven initiative dedicated to empowering school girls in sub-Saharan Africa.</li>
