@@ -44,7 +44,7 @@ class Donor(db.Model, SerializerMixin):
     username = db.Column(db.String, unique=True, nullable=False)
     _password_hash = db.Column(db.String)
     anonymous = db.Column(db.Boolean, default=False, nullable=False)
-    amount = db.Column(db.Integer)
+    amount = db.Column(db.Integer, default=0)
 
     charities = db.relationship('Charity', back_populates="donor")	
 
@@ -79,7 +79,8 @@ class Charity(db.Model, SerializerMixin):
     administrator_id = db.Column(db.Integer, db.ForeignKey('administrators.id'))  
     donor_id = db.Column(db.Integer, db.ForeignKey('donors.id'))  
     status = db.Column(db.String, nullable=False)
-    
+    total_amount = db.Column(db.Integer, default=0)
+
     administrator = db.relationship('Administrator', back_populates="charities")
     donor = db.relationship('Donor', back_populates="charities")
     stories = db.relationship("Story", back_populates="charity")
