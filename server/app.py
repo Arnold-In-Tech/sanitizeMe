@@ -103,6 +103,7 @@ class Logout(Resource):
 
 
 # List all charities
+## GET /charities
 class Charities(Resource):
     def get(self):
         charities = [charity.to_dict() for charity in Charity.query.all()]
@@ -115,6 +116,7 @@ class Charities(Resource):
 
 
 # Create new charity
+## POST /createCharities
 class CreateCharities(Resource):    
     def post(self):
         try:
@@ -136,6 +138,7 @@ class CreateCharities(Resource):
 
 
 # Delete charity
+## DELETE /charities/<int:id>
 class CharityById(Resource):
     def delete(self, id):
         record = Charity.query.filter_by(id=id).first()
@@ -153,6 +156,7 @@ class CharityById(Resource):
 
 
 # List of beneficiary stories for a specific charity
+## GET /charityStories/<int:id>
 class Charity_stories(Resource):
     def get(self, id):
         stories = Story.query.filter(Story.charity_id == id).all()
@@ -172,7 +176,8 @@ class Charity_stories(Resource):
             return response 
 
 
-# List of charities associated to a specific donor (myCharities)     
+# List of charities associated to a specific donor (myCharities)
+## GET /myCharities/<int:id>
 class Donor_charities(Resource):
     def get(self, id):
         charities = Charity.query.filter(Charity.donor_id == id).all()
@@ -199,7 +204,7 @@ api.add_resource(Login, '/login', endpoint='login')
 api.add_resource(Logout, '/logout', endpoint='logout')
 api.add_resource(Charities, '/charities', endpoint = 'charities')
 api.add_resource(CreateCharities, '/createCharities',  endpoint='createCharities')
-api.add_resource(CharityById, '/charities/<int:id>',  endpoint='createCharities')
+api.add_resource(CharityById, '/charities/<int:id>',  endpoint='charityById')
 api.add_resource(Charity_stories, '/charityStories/<int:id>', endpoint='Charity_stories')
 api.add_resource(Donor_charities, '/myCharities/<int:id>', endpoint='Donor_charities')
 
