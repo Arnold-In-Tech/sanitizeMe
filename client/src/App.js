@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router,Routes, Route,  } from 'react-router-dom';
+import OpenDonations from './components/OpenDonations';
+import CharityCard from './components/CharityCard';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/opendonations" Component={OpenDonations} />
+        <Route path= "/charitycard" Component = {CharityCard} />
+      </Routes>
+        </Router>
+);
+}
+function Home() {
+  return(
+
+    <div class="container mx-auto" >
+      <h1 className= "text-5xl">Sanitize Me Donation</h1>
+
+  </div>
+)
 }
 
 export default App;
