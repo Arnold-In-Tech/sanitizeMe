@@ -1,28 +1,33 @@
-import React from 'react';
-import { BrowserRouter as Router,Routes, Route,  } from 'react-router-dom';
-import OpenDonations from './components/OpenDonations';
-import CharityCard from './components/CharityCard';
+import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
+const Homepage = () => <h1>Homepage</h1>;
+const BrowseCharities = () => <h1>Browse Charities</h1>;
+const HowItWorks = () => <h1>How It Works</h1>;
+const CreateAccount = () => <h1>Create Account</h1>;
+const SignIn = () => <h1>Sign In</h1>;
+
+const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/opendonations" Component={OpenDonations} />
-        <Route path= "/charitycard" Component = {CharityCard} />
-      </Routes>
-        </Router>
-);
-}
-function Home() {
-  return(
-
-    <div class="container mx-auto" >
-      <h1 className= "text-5xl">Sanitize Me Donation</h1>
-
-  </div>
-)
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
