@@ -16,6 +16,7 @@ importlib-resources = "*"
 flask-bcrypt = "*"
 typing-extensions = "*"
 flask-cors = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
