@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <header className="header">
+      <div className="container">
       <nav className="nav">
         <ul className="nav-list">
           <li className="nav-item">
@@ -33,6 +34,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+      </div>
     </header>
   );
 };
