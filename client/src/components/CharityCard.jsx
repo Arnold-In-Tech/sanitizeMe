@@ -1,31 +1,21 @@
 import React from 'react';
 import '../App.css';
 
-function CharityCard({ title, description, donateLink }) {
+function CharityCard({ title, charity_description, donateLink, readMoreLink }) {
   return (
-    <div
-  class="block max-w-[18rem] rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white">
-  <div class="relative overflow-hidden bg-cover bg-no-repeat">
-    <img
-      class="rounded-t-lg"
-      src="https://tecdn.b-cdn.net/img/new/standard/nature/182.jpg"
-      alt="" />
-  </div>
-  <div class="p-6">
-    <p class="text-base">
-      Some quick example text to build on the card title and make up the
-      bulk of the card's content.
-    </p>
-    <button
-      type="button"
-      href="#"
-      class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-      data-twe-ripple-init
-      data-twe-ripple-color="light">
-      Donate Now
-    </button>
-  </div>
-</div>
+    <div className="max-w-sm rounded overflow-hidden shadow-lg m-4">
+      <img className="w-full" src="charity.jpg" alt="Charity Card " />
+      <div className="px-6 py-4">
+        <div className="font-bold text-xl mb-2">{title}</div>
+        <p className="text-gray-700 text-base">{charity_description}</p>
+        <div className="mt-4">
+                    <a href={readMoreLink} className="text-blue-500">Read More</a>
+                </div>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">
+          <a href={donateLink}>Donate Now</a>
+        </button>
+      </div>
+    </div>
   );
 }
 
