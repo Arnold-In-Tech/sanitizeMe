@@ -1,7 +1,8 @@
 .sign-app {
     text-align: center;
     padding: 5rem 1rem;
-    background: #FADCD9; 
+    background: #FADCD9;
+    margin-top:-25px;  
   }
   
   .error {
