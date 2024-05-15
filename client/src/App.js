@@ -2,6 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './components/SignUp';
+import Footer from './components/Footer';
 
 const Homepage = () => <h1>Homepage</h1>;
 const BrowseCharities = () => <h1>Browse Charities</h1>;
@@ -19,7 +20,9 @@ const App = () => {
         <Route path="/create-account" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
       </Routes>
+      <Footer />
     </Router>
+    
   );
 };
 
