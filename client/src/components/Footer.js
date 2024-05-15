@@ -1,10 +1,8 @@
-// Footer.js
-
 import React from 'react';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="footer"> 
       <div>
         <h4>About</h4>
         <p>TERMS & CONDITIONS</p>

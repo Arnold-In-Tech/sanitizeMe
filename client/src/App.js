@@ -1,10 +1,10 @@
 
 import './App.css';
 import Header from './components/Header';
-import Footer from './Footer';
+import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './components/SignUp';
-import AboutUs from './AboutUs.js';
+import AboutUs from './components/AboutUs.js';
 
 const Homepage = () => <h1>Homepage</h1>;
 const BrowseCharities = () => <h1>Browse Charities</h1>;
