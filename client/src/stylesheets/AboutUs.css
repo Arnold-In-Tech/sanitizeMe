@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-column {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.right-column {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.images-section {
+    margin-bottom: 20px;
+}
+
+.images-section img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .right-column {
+        margin-left: 0;
+    }
+
+    .left-column,
+    .right-column {
+        margin: 0;
+    }
+}
