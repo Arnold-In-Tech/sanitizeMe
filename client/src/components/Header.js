@@ -33,6 +33,9 @@ const Header = () => {
               About Us
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to="/partners" className="nav-link">Our Partners</Link>
+          </li>
         </ul>
 
         <ul className="rightmenu"> 

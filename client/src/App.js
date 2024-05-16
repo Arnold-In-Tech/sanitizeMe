@@ -4,7 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './components/SignUp';
-import AboutUs from './components/AboutUs';
+import Footer from './components/Footer';
+import Partners from './components/Partners';
 
 
 const Homepage = () => <h1>Homepage</h1>;
@@ -23,10 +24,11 @@ const App = () => {
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/create-account" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/AboutUs" element={<AboutUs />} />
+        <Route path="/partners" element={<Partners />} />
       </Routes>
-      <Footer /> 
+      <Footer />
     </Router>
+    
   );
 };
 
