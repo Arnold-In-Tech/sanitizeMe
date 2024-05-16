@@ -1,0 +1,32 @@
+.partners {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.logos-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: scroll 20s linear infinite;
+  width: calc(200px * 11); 
+}
+
+.logos img {
+  width: 200px; 
+  padding: 1rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-200px * 11)); 
+  }
+}
