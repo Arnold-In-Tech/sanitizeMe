@@ -4,9 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './components/SignUp';
-import Footer from './components/Footer';
 import Partners from './components/Partners';
-
+import AboutUs from './components/AboutUs';
 
 const Homepage = () => <h1>Homepage</h1>;
 const BrowseCharities = () => <h1>Browse Charities</h1>;
@@ -25,6 +24,7 @@ const App = () => {
         <Route path="/create-account" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/partners" element={<Partners />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
       </Routes>
       <Footer />
     </Router>

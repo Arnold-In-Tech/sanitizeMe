@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 function AboutUs() {
-    // State to manage the visibility of answers
     const [answersVisible, setAnswersVisible] = useState({});
 
     // Function to toggle the visibility of answers
@@ -75,7 +74,7 @@ function AboutUs() {
                             </div>
                         )}
                     </li>
-                     <li>
+                    <li>
                         <strong>
                             <a href="#faq3" onClick={() => toggleAnswerVisibility('faq3')}>
                                 Can I donate anonymously?
@@ -113,9 +112,6 @@ function AboutUs() {
                     </li>
                 </ul>
             </section>
-            
-            {/* Add a link to directly navigate to the FAQ section */}
-            <p><a href="#faq">Jump to FAQ</a></p>
         </div>
     );
 }
