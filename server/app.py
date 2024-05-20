@@ -11,6 +11,10 @@ from config import app, db, api
 from models import Administrator, Donor, Charity, Story
 
 
+@app.before_request
+def check_if_logged_in():
+    if (not session.get('donor_id')) and (request.endpoint == 'createCharities'): 
+        return {'error': '401 Unauthorized'}, 401
 
 class Home(Resource):
     def get(self):
@@ -26,26 +30,29 @@ def not_found(e):
 class Signup(Resource):
     def post(self):
         json = request.get_json()
-
+        print(json)  
+        
         firstname = json.get('firstname')
         lastname = json.get('lastname')
         username = json.get('username')
+        email = json.get('email')
         password = json.get('password')
-        anonymous = json.get('anonymous')
-        amount = json.get('anonymous')
+        anonymous = "yes" == json.get('anonymous').lower()
+        amount = 0                          # set amount to zero (default)
 
         new_user = Donor(
             firstname = firstname,
             lastname = lastname,
             username = username,
+            email = email,
             anonymous = anonymous,
             amount = amount
-            )
+            )          
         new_user.password_hash = password
         try:
             db.session.add(new_user)
             db.session.commit()
-            session['donor_id'] = new_user.id
+            # session['donor_id'] = new_user.id
             return new_user.to_dict(), 201
         except IntegrityError:
             return {'error': '422 Unprocessable Entity'}, 422
@@ -93,11 +100,11 @@ class Login(Resource):
 class Logout(Resource):
     def delete(self):
         if session['donor_id']:
-            session['donor_id'] = None
-            return {}, 204
+            session.pop('donor_id', None)
+            return 'Logged out', 204
         elif session['administrator_id']:
-            session['administrator_id'] = None
-            return {}, 204
+            session.pop('administrator_id', None)
+            return 'Logged out', 204
 
         return {'error': 'Unauthorized: user is not logged in'}, 401
 
@@ -117,18 +124,31 @@ class Charities(Resource):
 
 # Create new charity
 ## POST /createCharities
-class CreateCharities(Resource):
+class CreateCharities(Resource):    
     def post(self):
         try:
             data = request.get_json()
+
+            title=data.get('title')
+            charity_description=data.get('charity_description')
+            organizer_name=data.get('organizer_name')
+            location=data.get('location')
+            period=data.get('period')
+            administrator_id=1 
+            donor_id = session.get('donor_id')  
+            status_ ="Inactive"
+            total_amount=0
+
             new_charity = Charity(
-                title=data.get('title'),
-                charity_description=data.get('charity_description'),
-                organizer_name=data.get('organizer_name'),
-                location=data.get('location'),
-                administrator_id=data.get('administrator_id'),
-                donor_id=data.get('donor_id'),
-                status = data.get('status')
+                title= title,
+                charity_description=charity_description,
+                organizer_name=organizer_name,
+                location=location,
+                period=period,
+                administrator_id= administrator_id,
+                donor_id= donor_id,
+                status = status_,
+                total_amount= total_amount
             )
             db.session.add(new_charity)
             db.session.commit()

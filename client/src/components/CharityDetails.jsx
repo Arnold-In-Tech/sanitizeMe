@@ -16,7 +16,7 @@ const CharityDetails = () => {
   const fetchCharityDetails = async (charityId) => {
     console.log('Fetching charity details for ID:', charityId);
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/charities/${charityId}`);
+      const response = await axios.get(`/charities/${charityId}`);
       console.log('Charity details:', response.data);
       setCharity(response.data);
     } catch (error) {
@@ -28,7 +28,7 @@ const CharityDetails = () => {
   const fetchCharityStories = async (charityId) => {
     console.log('Fetching charity stories for ID:', charityId);
     try {
-      const response = await fetch(`http://127.0.0.1:5000/charityStories/${charityId}`);
+      const response = await fetch(`/charityStories/${charityId}`);
       const data = await response.json();
       setCharityStories(data);
     } catch (error) {

@@ -7,105 +7,160 @@ import '../stylesheets/SignUp.css'
 
 function SignUp() {
     const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false)
-    const onSubmit = async (values, actions) => {
-      setIsLoading(true); 
-      console.log(values);
-      console.log(actions);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      actions.resetForm();
-      setIsLoading(false);
-      navigate('/login');
-    };
-    const { values,
-      errors,
-      touched,
-      isSubmitting,
-      handleBlur,
-      handleChange,
-      handleSubmit,} = useFormik({
+    const [flag, setFlag] = useState(1)
+    
+    const formik = useFormik({
         initialValues: {
-          firstName : '',
-          lastName : '',
+          firstname : '',
+          lastname : '',
           email : '',
+          anonymous: '',
+          username: '',
           password : '',
           confirmPassword : ''
         },
         validationSchema :basicSchema,
-        onSubmit,
+        onSubmit: (values) => {
+          fetch("/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              'Accept': 'application/json',
+            },
+            body: JSON.stringify(values, null, 2),
+          }).then((res) => {
+            if (res.status === 201) {
+              alert("Sign-Up successful!")
+              navigate("/login");
+              setFlag(1);
+            }else{
+              setFlag(2);   // This will display error 422 Unprocessable Entity 
+            }
+          });
+        },
       })
 
   return (
   <div className='sign-app'>
-  <div className='container'>
-    <h1> Create Account</h1>
-    <form onSubmit={handleSubmit} autoComplete="off">
-     
-    <div className='input-container'>
-    <label htmlFor="firstname">FirstName</label>
-      <input id='firstName' name='firstName' type='text' placeholder='firstname' 
-      onChange={handleChange}
-      onBlur={handleBlur}
-      value={values.firstName}
-      className={errors.firstName && touched.firstName ? "input-error" : ""}/>
-      {touched.firstName && errors.firstName ? <p className='error'>{errors.firstName}</p> : null}
+    <div className='container'>
+      <h1> Sign Up</h1>
+      <form onSubmit={formik.handleSubmit} autoComplete="off">
+      
+        <div className='input-container'>
+          <label htmlFor="firstname">First name</label>
+          <input 
+          id='firstname' 
+          name='firstname' 
+          type='text' 
+          placeholder='firstname' 
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.firstname}
+          className={formik.errors.firstname && formik.touched.firstname ? "input-error" : ""}
+          />
+          {formik.touched.firstname && formik.errors.firstname ? <p className='error'>{formik.errors.firstname}</p> : null}
+        </div>
+
+        <div className='input-container'>
+          <label htmlFor="lastname">Last name </label>
+          <input 
+          id='lastname' 
+          name='lastname' 
+          type='text' 
+          placeholder='lastname' 
+          onChange={formik.handleChange} 
+          onBlur={formik.handleBlur}
+          value={formik.values.lastname}
+          className={formik.errors.lastname && formik.touched.lastname ? "input-error" : ""}
+          />
+          {formik.touched.lastname && formik.errors.lastname ? <p className='error'>{formik.errors.lastname}</p> : null}
+        </div>
+
+        <div className='input-container'>
+          <label htmlFor="email">E-mail</label>
+          <input 
+          id='email' 
+          name='email' 
+          type='email' 
+          placeholder='email' 
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.email}
+          className={formik.errors.email && formik.touched.email ? "input-error" : ""}/>
+          {formik.touched.email && formik.errors.email ? <p className='error'>{formik.errors.email}</p> : null}
+        </div>
+
+        <div className='input-container'>
+          <label htmlFor="username">Username </label>
+          <input 
+          id='username' 
+          name='username' 
+          type='text' 
+          placeholder='username' 
+          onChange={formik.handleChange} 
+          onBlur={formik.handleBlur}
+          value={formik.values.username}
+          className={formik.errors.username && formik.touched.username ? "input-error" : ""}/>
+          {formik.touched.username && formik.errors.username ? <p className='error'>{formik.errors.username}</p> : null}
+        </div>
+
+        <div className='input-container'>
+          <label htmlFor="password">Password</label>
+          <input 
+          id='password' 
+          name='password' 
+          type='password' 
+          placeholder='password' 
+          autoComplete="off" 
+          onChange={formik.handleChange} 
+          onBlur={formik.handleBlur}
+          value={formik.values.password} 
+          className={formik.errors.password && formik.touched.password ? "input-error" : ""}
+          />
+          {formik.touched.password && formik.errors.password? <p className='error'>{formik.errors.password}</p> : null}
+        </div>
+
+        <div className='input-container'>
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input 
+          id="confirmPassword" 
+          type="password" 
+          autoComplete="off" 
+          placeholder="Confirm password" 
+          value={formik.values.confirmPassword} 
+          onChange={formik.handleChange} 
+          onBlur={formik.handleBlur} 
+          className={formik.errors.confirmPassword && formik.touched.confirmPassword ? "input-error" : ""}
+          />
+          {formik.errors.confirmPassword && formik.touched.confirmPassword && (
+            <p className="error">{formik.errors.confirmPassword}</p>
+          )}
+        </div>
+
+        <div className='input-container'>
+          <label htmlFor="anonymous">Anonymous? </label>
+          <input 
+          id='anonymous' 
+          name='anonymous' 
+          type='text' 
+          placeholder='Yes/No' 
+          onChange={formik.handleChange} 
+          onBlur={formik.handleBlur}
+          value={formik.values.anonymous}
+          className={formik.errors.anonymous && formik.touched.anonymous ? "input-error" : ""}
+          />
+          {formik.touched.anonymous && formik.errors.anonymous ? <p className='error'>{formik.errors.anonymous}</p> : null}
+        </div>
+
+        <button type="submit">
+          Register 
+        </button>
+
+        { flag === 2 && <p style={{ color: 'red', lineHeight : 3, paddingTop: '0.5em', fontSize: "large", fontWeight: "bold" }}>Error 422: Unprocessable Entity!</p>}
+
+      </form>
     </div>
-
-    <div className='input-container'>
-    <label htmlFor="lastname">lastName </label>
-      <input id='lastName' name='lastName' type='text' placeholder='lastname' 
-       onChange={handleChange} 
-       onBlur={handleBlur}
-       value={values.lastName}
-       className={errors.lastName && touched.lastName ? "input-error" : ""}/>
-      {touched.lastName && errors.lastName ? <p className='error'>{errors.lastName}</p> : null}
-     </div>
-
-     <div className='input-container'>
-     <label htmlFor="email">Email</label>
-      <input id='email' name='email' type='email' placeholder='email' 
-       onChange={handleChange}
-       onBlur={handleBlur}
-       value={values.email}
-       className={errors.email && touched.email ? "input-error" : ""}/>
-      {touched.email && errors.email ? <p className='error'>{errors.email}</p> : null}
-      </div>
-
-      <div className='input-container'>
-      <label htmlFor="password">Password</label>
-      <input id='password' name='password' type='password' placeholder='password'
-       onChange={handleChange}
-       onBlur={handleBlur}
-       value={values.password}
-       className={errors.password && touched.password ? "input-error" : ""}/>
-       {touched.password && errors.password? <p className='error'>{errors.password}</p> : null}
-      </div>
-
-      <div className='input-container'>
-      <label htmlFor="confirmPassword">Confirm Password</label>
-      <input
-        id="confirmPassword"
-        type="password"
-        placeholder="Confirm password"
-        value={values.confirmPassword}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        className={
-          errors.confirmPassword && touched.confirmPassword ? "input-error" : ""
-        }
-      />
-      {errors.confirmPassword && touched.confirmPassword && (
-        <p className="error">{errors.confirmPassword}</p>
-      )}
-      </div>
-      <button disabled={isSubmitting || isLoading} type="submit">
-                        {isLoading ? "Registering..." : "Register"} </button>
-
-     </form>
-     </div>
-     </div>
-  
-    
+  </div>    
   )
 }
 
