@@ -11,6 +11,7 @@ class Administrator(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String, unique=True, nullable=False)
     lastname = db.Column(db.String, unique=True, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
     username = db.Column(db.String, unique=True, nullable=False)
     _password_hash = db.Column(db.String, nullable=False)
 
@@ -41,6 +42,7 @@ class Donor(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String, unique=True, nullable=False)
     lastname = db.Column(db.String, unique=True, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
     username = db.Column(db.String, unique=True, nullable=False)
     _password_hash = db.Column(db.String)
     anonymous = db.Column(db.Boolean, default=False, nullable=False)

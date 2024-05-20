@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: c4f77cee4347
+Revision ID: 91d7f4827369
 Revises: 
-Create Date: 2024-05-10 16:31:22.721636
+Create Date: 2024-05-19 21:22:54.002250
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c4f77cee4347'
+revision = '91d7f4827369'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,9 +22,11 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('firstname', sa.String(), nullable=False),
     sa.Column('lastname', sa.String(), nullable=False),
+    sa.Column('email', sa.String(), nullable=False),
     sa.Column('username', sa.String(), nullable=False),
     sa.Column('_password_hash', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email'),
     sa.UniqueConstraint('firstname'),
     sa.UniqueConstraint('lastname'),
     sa.UniqueConstraint('username')
@@ -33,11 +35,13 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('firstname', sa.String(), nullable=False),
     sa.Column('lastname', sa.String(), nullable=False),
+    sa.Column('email', sa.String(), nullable=False),
     sa.Column('username', sa.String(), nullable=False),
     sa.Column('_password_hash', sa.String(), nullable=True),
     sa.Column('anonymous', sa.Boolean(), nullable=False),
     sa.Column('amount', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email'),
     sa.UniqueConstraint('firstname'),
     sa.UniqueConstraint('lastname'),
     sa.UniqueConstraint('username')
