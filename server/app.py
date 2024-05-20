@@ -26,26 +26,29 @@ def not_found(e):
 class Signup(Resource):
     def post(self):
         json = request.get_json()
-
+        print(json)  
+        
         firstname = json.get('firstname')
         lastname = json.get('lastname')
         username = json.get('username')
+        email = json.get('email')
         password = json.get('password')
-        anonymous = json.get('anonymous')
-        amount = json.get('anonymous')
+        anonymous = "yes" == json.get('anonymous').lower()
+        amount = 0                          # set amount to zero (default)
 
         new_user = Donor(
             firstname = firstname,
             lastname = lastname,
             username = username,
+            email = email,
             anonymous = anonymous,
             amount = amount
-            )
+            )          
         new_user.password_hash = password
         try:
             db.session.add(new_user)
             db.session.commit()
-            session['donor_id'] = new_user.id
+            # session['donor_id'] = new_user.id
             return new_user.to_dict(), 201
         except IntegrityError:
             return {'error': '422 Unprocessable Entity'}, 422
