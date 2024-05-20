@@ -7,9 +7,11 @@ import Footer from './components/Footer';
 import OpenDonations from './components/OpenDonations';
 import CharityDetails from './components/CharityDetails';
 import Donations from './components/Donations';
+import Homepage from './components/Homepage';
 import RegisterCharity from './components/Register_charity';
 
-const Homepage = () => <h1>Homepage</h1>;
+
+
 const HowItWorks = () => <h1>How It Works</h1>;
 const MyCharities = () => <h1>My charities</h1>;
 const AboutUs = () => <h1>About Us</h1>;
