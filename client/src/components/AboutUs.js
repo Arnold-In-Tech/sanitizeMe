@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../stylesheets/AboutUs.css'
 
 function AboutUs() {
     const [answersVisible, setAnswersVisible] = useState({});
@@ -37,7 +38,9 @@ function AboutUs() {
             {/* Images */}
             <section>
                 <img src="donation_graph.jpg" alt="Donation Graph" style={{ maxWidth: '100%', marginBottom: '20px' }} />
-                <img src="https://www.kenyanews.go.ke/wp-content/uploads/2024/02/IMG-20240212-BUNGOMA-SCHOOLS-PHOTO-2-1200x630.jpg" alt="Children Receiving Donations" style={{ maxWidth: '100%', marginBottom: '20px' }} />
+                <img src="https://www.wvi.org/sites/default/files/styles/hero_rectangle_1280x623/public/2022-03/D200-0913-105.webp?itok=x14voapu.jpg" alt="Children Receiving Donations" style={{ maxWidth: '100%', marginBottom: '20px' }} />
+                <img src='https://png.pngtree.com/background/20230818/origin…y-african-village-photo-picture-image_4726365.jpg' alt="Children Receiving Donations" style={{ maxWidth: '100%', marginBottom: '20px' }}/>
+                <img src="https://www.salaambaalaktrust.com/blog/wp-content/uploads/2022/02/Tax-Exemption-1024x683.jpg" alt="Children Receiving Donations" style={{ maxWidth: '100%', marginBottom: '20px' }} />
             </section>
             
             {/* Statistics */}
