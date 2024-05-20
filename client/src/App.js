@@ -7,10 +7,12 @@ import Partners from './components/Partners';
 import OpenDonations from './components/OpenDonations';
 import CharityDetails from './components/CharityDetails';
 import Donations from './components/Donations';
+import Homepage from './components/Homepage';
 
 
 
-const Homepage = () => <h1>Homepage</h1>;
+
+
 const HowItWorks = () => <h1>How It Works</h1>;
 const SignIn = () => <h1>Sign In</h1>;
 
