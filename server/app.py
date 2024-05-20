@@ -154,7 +154,7 @@ class CreateCharities(Resource):
             db.session.commit()
             return new_charity.to_dict(), 201
         except IntegrityError:
-            return session['donor_id'].to_dict(), 422
+            return {'error': 'Unprocessable Entity'}, 422
 
 
 # Delete charity
