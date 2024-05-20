@@ -11,6 +11,10 @@ from config import app, db, api
 from models import Administrator, Donor, Charity, Story
 
 
+@app.before_request
+def check_if_logged_in():
+    if (not session.get('donor_id')) and (request.endpoint == 'createCharities'): 
+        return {'error': '401 Unauthorized'}, 401
 
 class Home(Resource):
     def get(self):
@@ -96,11 +100,11 @@ class Login(Resource):
 class Logout(Resource):
     def delete(self):
         if session['donor_id']:
-            session['donor_id'] = None
-            return {}, 204
+            session.pop('donor_id', None)
+            return 'Logged out', 204
         elif session['administrator_id']:
-            session['administrator_id'] = None
-            return {}, 204
+            session.pop('administrator_id', None)
+            return 'Logged out', 204
 
         return {'error': 'Unauthorized: user is not logged in'}, 401
 
@@ -120,24 +124,37 @@ class Charities(Resource):
 
 # Create new charity
 ## POST /createCharities
-class CreateCharities(Resource):
+class CreateCharities(Resource):    
     def post(self):
         try:
             data = request.get_json()
+
+            title=data.get('title')
+            charity_description=data.get('charity_description')
+            organizer_name=data.get('organizer_name')
+            location=data.get('location')
+            period=data.get('period')
+            administrator_id=1 
+            donor_id = session.get('donor_id')  
+            status_ ="Inactive"
+            total_amount=0
+
             new_charity = Charity(
-                title=data.get('title'),
-                charity_description=data.get('charity_description'),
-                organizer_name=data.get('organizer_name'),
-                location=data.get('location'),
-                administrator_id=data.get('administrator_id'),
-                donor_id=data.get('donor_id'),
-                status = data.get('status')
+                title= title,
+                charity_description=charity_description,
+                organizer_name=organizer_name,
+                location=location,
+                period=period,
+                administrator_id= administrator_id,
+                donor_id= donor_id,
+                status = status_,
+                total_amount= total_amount
             )
             db.session.add(new_charity)
             db.session.commit()
             return new_charity.to_dict(), 201
         except IntegrityError:
-            return {'error': 'Unprocessable Entity'}, 422
+            return session['donor_id'].to_dict(), 422
 
 
 # Delete charity
