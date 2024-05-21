@@ -3,12 +3,15 @@ import { useFormik, Field, FormikProvider } from "formik";
 import * as yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
 import '../stylesheets/SignUp.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Login() {
     const navigate = useNavigate();
     const [checked, setChecked] = useState(true);
     const [flag, setFlag] = useState(1)
+    const notify = () => toast("You are now Logged In!");
 
     function handleCheckChange(event) {
       event.target.checked = false;
@@ -39,11 +42,13 @@ export default function Login() {
           body: JSON.stringify(values, null, 2),
         }).then((res) => {
           if (res.status === 200) {
-            alert(res.status + ": You are now Logged In!")
-            navigate("/");
+            notify();
+            setTimeout(function(){
+              navigate("/");
+              window.location.reload(); // reload to change button text from login to logout
+           }, 5000);
             sessionStorage.setItem("loginStatus", "true");
             sessionStorage.setItem("users",JSON.parse(JSON.stringify(values, null, 2)).username);   // store username
-            window.location.reload(); // reload to change button text from login to logout
             setFlag(1);
           }else{
             setFlag(2);  // This will display invalid login 
@@ -142,6 +147,8 @@ export default function Login() {
               </div>
 
               { flag === 2 && <p style={{ color: 'red', lineHeight : 3, paddingTop: '0.5em', fontSize: "large", fontWeight: "bold" }}>Invalid login credentials, please try again!</p>}
+
+              <ToastContainer />
 
             </form>
           </div>
