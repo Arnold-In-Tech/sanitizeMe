@@ -1,7 +1,12 @@
 .partners {
   padding: 2rem;
   text-align: center;
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, #f0f8ff, #e6e6fa); 
+}
+
+.partners h2 {
+  color: #000; 
+  font-weight: bold;
 }
 
 .logos-container {
@@ -14,7 +19,7 @@
   justify-content: space-between;
   align-items: center;
   animation: scroll 20s linear infinite;
-  width: calc(200px * 11); 
+  width: calc(200px * 18); 
 }
 
 .logos img {
@@ -27,6 +32,6 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-200px * 11)); 
+    transform: translateX(calc(-200px * 9)); 
   }
 }
