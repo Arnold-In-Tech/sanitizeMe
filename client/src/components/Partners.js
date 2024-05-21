@@ -10,21 +10,30 @@ import googleLogo from '../assets/Google.webp';
 import charityWatchLogo from '../assets/charity-watch-logo.webp';
 import '../stylesheets/Partners.css';
 
+const logos = [
+  charityNavigatorLogo,
+  ikeaFoundationLogo,
+  redCrossLogo,
+  consumerReportsLogo,
+  usaidLogo,
+  globalInnovationFundLogo,
+  princetonUniversityLogo,
+  googleLogo,
+  charityWatchLogo
+];
+
 const Partners = () => {
+  // Duplicate the logos array to ensure seamless animation
+  const allLogos = [...logos, ...logos];
+  
   return (
     <div className="partners">
-      <h2>Our Partners</h2>
+      <h2>Trusted by top reviewers, funders and reasearchers</h2>
       <div className="logos-container">
         <div className="logos">
-          <img src={charityNavigatorLogo} alt="Charity Navigator" />
-          <img src={ikeaFoundationLogo} alt="IKEA FOUNDATION" />
-          <img src={redCrossLogo} alt="Kenya Red Cross" />
-          <img src={consumerReportsLogo} alt="Consumer Reports" />
-          <img src={usaidLogo} alt="USAID" />
-          <img src={globalInnovationFundLogo} alt="Global Innovation Fund" />
-          <img src={princetonUniversityLogo} alt="Princeton University" />
-          <img src={googleLogo} alt="Google" />
-          <img src={charityWatchLogo} alt="Charity Watch" />
+          {allLogos.map((logo, index) => (
+            <img src={logo} alt={`logo-${index}`} key={index} />
+          ))}
         </div>
       </div>
     </div>
