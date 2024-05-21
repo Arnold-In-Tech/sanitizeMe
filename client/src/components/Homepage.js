@@ -1,6 +1,7 @@
 import React from 'react';
-import Partners from './Partners'; 
-import '../stylesheets/Homepage.css'; 
+import Partners from './Partners';
+import HumanitarianMission from './HumanitarianMission';
+import '../stylesheets/Homepage.css';
 
 const Homepage = () => (
   <div className="homepage">
@@ -13,8 +14,8 @@ const Homepage = () => (
       </div>
     </div>
     <div className="partners-section">
-
-      <Partners /> 
+      <HumanitarianMission />
+      <Partners />
     </div>
   </div>
 );
