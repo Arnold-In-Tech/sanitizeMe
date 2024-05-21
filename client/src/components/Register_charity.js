@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import "../stylesheets/Register_charity.css"
 import { useNavigate} from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function RegisterCharity() {
   const [flag, setFlag] = useState(1)
@@ -13,6 +15,8 @@ function RegisterCharity() {
     period: '',
     // administrator_id, donor_id, status and total amount will be set to default "Inactive" and 0 respectively in the backend
   });
+  const notify_s = () => toast("Registration successful!");
+  const notify_f = () => toast("Unsuccessful - Please Login!");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +44,6 @@ function RegisterCharity() {
         return [res.json(), res.status, res.statusText]})
       .then((post) => {
         if (post[1] === 201) {
-          alert(formData.title + " successfully registered.");
           setFormData({
             title: '',
             charity_description: '',
@@ -49,9 +52,13 @@ function RegisterCharity() {
             period: '',     
           });
           setFlag(1);
-          navigate("/charities");
+          notify_s();
+          setTimeout(function(){
+            navigate("/charities");
+         }, 5000);
         }else{
-          alert("Error " + post[1] + " " + post[2] + " : registration Unsuccessful - Please Login")
+          notify_f();
+          // alert("Error " + post[1] + " " + post[2] + " : registration Unsuccessful - Please Login")
           setFlag(2);  // This will display invalid login 
         }
       })
@@ -72,6 +79,7 @@ function RegisterCharity() {
         <input type="text" name="period" value={formData.period} onChange={handleChange} placeholder="Active period: DD/MM/YY - DD/MM/YY" className="form-item" />
         <button type="submit" className="btn">Register charity</button>
         { flag === 2 && <p style={{ color: 'red', lineHeight : 1, paddingTop: '0.5em', fontSize: "large", fontWeight: "bold", textAlign: "center" }}>Unsuccessful. Please Login First !</p>}
+        <ToastContainer />
       </form>
     </div>
   );

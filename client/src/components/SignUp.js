@@ -3,11 +3,14 @@ import {useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom';
 import { basicSchema } from "./Schema"
 import '../stylesheets/SignUp.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function SignUp() {
     const navigate = useNavigate();
     const [flag, setFlag] = useState(1)
+    const notify = () => toast("Sign-Up successful!");
     
     const formik = useFormik({
         initialValues: {
@@ -30,8 +33,10 @@ function SignUp() {
             body: JSON.stringify(values, null, 2),
           }).then((res) => {
             if (res.status === 201) {
-              alert("Sign-Up successful!")
-              navigate("/login");
+              notify();
+              setTimeout(function(){
+                navigate("/login");
+             }, 5000);
               setFlag(1);
             }else{
               setFlag(2);   // This will display error 422 Unprocessable Entity 
@@ -157,6 +162,8 @@ function SignUp() {
         </button>
 
         { flag === 2 && <p style={{ color: 'red', lineHeight : 3, paddingTop: '0.5em', fontSize: "large", fontWeight: "bold" }}>Error 422: Unprocessable Entity!</p>}
+
+        <ToastContainer />
 
       </form>
     </div>
