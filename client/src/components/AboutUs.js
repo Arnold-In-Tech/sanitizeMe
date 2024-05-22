@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../stylesheets/AboutUs.css'
+import { Link } from 'react-router-dom'; 
+import '../stylesheets/AboutUs.css';
 
 function AboutUs() {
     const [answersVisible, setAnswersVisible] = useState({});
@@ -15,11 +16,10 @@ function AboutUs() {
     return (
         <div className="container">
             {/* Header */}
-            <h1>About Us - SanitizeMe</h1>
+            <h1>About Us</h1>
             
             {/* Mission */}
             <section>
-                <h2>Our Mission</h2>
                 <p>SanitizeMe is a passion-driven initiative dedicated to empowering school girls in sub-Saharan Africa by providing access to sanitary towels and other essential supplies needed for their periods. We believe that every girl deserves the opportunity to pursue her education without the barrier of period poverty.</p>
             </section>
             
@@ -32,24 +32,25 @@ function AboutUs() {
                     <li>Help build schools and improve access to education</li>
                     <li>Support clean water initiatives in Africa</li>
                 </ul>
-                <p><a href="#donate">Donate Now</a> to make a difference in the lives of girls in sub-Saharan Africa!</p>
+            <p><Link to="/donate" className="donate-button">Donate Now</Link> to make a difference in the lives of girls in sub-Saharan Africa!</p>
             </section>
             
             {/* Images */}
             <section>
-                <img src="donation_graph.jpg" alt="Donation Graph" style={{ maxWidth: '100%', marginBottom: '20px' }} />
-                <img src="https://www.wvi.org/sites/default/files/styles/hero_rectangle_1280x623/public/2022-03/D200-0913-105.webp?itok=x14voapu.jpg" alt="Children Receiving Donations" style={{ maxWidth: '100%', marginBottom: '20px' }} />
-                <img src='https://png.pngtree.com/background/20230818/origin…y-african-village-photo-picture-image_4726365.jpg' alt="Children Receiving Donations" style={{ maxWidth: '100%', marginBottom: '20px' }}/>
-                <img src="https://www.salaambaalaktrust.com/blog/wp-content/uploads/2022/02/Tax-Exemption-1024x683.jpg" alt="Children Receiving Donations" style={{ maxWidth: '100%', marginBottom: '20px' }} />
+                <img src="https://www.wvi.org/sites/default/files/styles/hero_rectangle_1280x623/public/2022-03/D200-0913-105.webp?itok=x14voapu.jpg" alt="Children Receiving Donations" style={{ maxWidth: '60%', marginBottom: '10px' }} />
+                <p>Providing clean water</p>
+                <img src="https://www.salaambaalaktrust.com/blog/wp-content/uploads/2022/02/Tax-Exemption-1024x683.jpg" alt="Children Receiving Donations" style={{ maxWidth: '60%', marginBottom: '10px' }} />
+                <p>Helping Build A School</p>
+                <img src="https://www.google.com/search?q=helping+arumbe+village+images&sca_esv=137e48d954afa8b7&sca_upv=1&ei=6RVLZr3TAZKD9u8P_Ymk-AY&ved=0ahUKEwj968u485uGAxWSgf0HHf0ECW8Q4dUDCBA&uact=5&oq=helping+arumbe+village+images&gs_lp=Egxnd3Mtd2l6LXNlcnAiHWhlbHBpbmcgYXJ1bWJlIHZpbGxhZ2UgaW1hZ2VzMgcQIRigARgKMgcQIRigARgKSN4UUIcCWKQScAF4AZABAJgBxgKgAdYOqgEDMy02uAEDyAEA-AEBmAIHoAKdD8ICChAAGLADGNYEGEeYAwCIBgGQBgiSBwUxLjMtNqAH1Ro&sclient=gws-wiz-serp#vhid=tMe3xUfzwiGH0M&vssid=l.jpg" alt="Children Receiving Donations" style={{ maxWidth: '60%', marginBottom: '10px' }} />
             </section>
             
-            {/* Statistics */}
             <section>
-                <h2>Statistics</h2>
-                <p>Stay updated with our latest statistics on the impact we're making. <a href="#statistics">View Statistics</a></p>
+                <h2>Mission</h2>
+                <p>At SinitizeMe, we believe in the power of collective action to transform lives. Our mission is simple yet profound: to foster positive change by connecting passionate donors like you with impactful causes worldwide.</p>
             </section>
-            
+
             {/* FAQ */}
+
             <section id="faq">
                 <h2>Frequently Asked Questions</h2>
                 <ul>

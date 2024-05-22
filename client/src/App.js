@@ -7,13 +7,12 @@ import Footer from './components/Footer';
 import OpenDonations from './components/OpenDonations';
 import CharityDetails from './components/CharityDetails';
 import Donations from './components/Donations';
-
+import AboutUs from './components/AboutUs';
 
 const Homepage = () => <h1>Homepage</h1>;
 const CreateCharities = () => <h1>Create charity</h1>;
 const HowItWorks = () => <h1>How It Works</h1>;
 const MyCharities = () => <h1>My charities</h1>;
-const AboutUs = () => <h1>About Us</h1>;
 
 const App = () => {
   return (
@@ -30,7 +29,7 @@ const App = () => {
         <Route path="/createCharities" element={<CreateCharities />} />
         <Route path="/howItWorks" element={<HowItWorks />} />
         <Route path="/myCharities" element={<MyCharities />} />
-        <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         {/* <Route path="/partners" element={<Partners />} /> */}
