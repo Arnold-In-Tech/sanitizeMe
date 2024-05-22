@@ -9,11 +9,11 @@ import CharityDetails from './components/CharityDetails';
 import Donations from './components/Donations';
 import Homepage from './components/Homepage';
 import RegisterCharity from './components/Register_charity';
+import MyCharities from './components/My_Charities'
 
 
 
 const HowItWorks = () => <h1>How It Works</h1>;
-const MyCharities = () => <h1>My charities</h1>;
 const AboutUs = () => <h1>About Us</h1>;
 
 const App = () => {
