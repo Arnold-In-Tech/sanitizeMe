@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CharityCard from './CharityCard';
-//import '../App.css';
+import '../stylesheets/Opendonations.css'
 import SearchBar from './SearchBar';
 
 function OpenDonations() {
@@ -14,24 +14,27 @@ function OpenDonations() {
             .catch(error => console.error('Error fetching charities:', error));
     }, []);
 
-    return (
-        <div className="container">
-            <h1 style={{backgroundColor: "lightblue"}}>Open Donations</h1>
-            <SearchBar charities={charities} setCharities={setCharities} />
+        return (
             <div>
-                {charities.map(charity => (
-                    <CharityCard
-                        key={charity.id}
-                        title={charity.title}
-                        charity_description={charity.charity_description}
-                        donateLink={charity.donateLink}
-                        charityId={charity.id}
-                    />
-
-                ))}
+                <div className="container">
+                    <h1>Open Donations</h1>
+                    <SearchBar charities={charities} setCharities={setCharities} />
+                </div>
+                <div className="container-charity">
+                    <div className="charity-grid">
+                        {charities.map(charity => (
+                            <CharityCard
+                                key={charity.id}
+                                title={charity.title}
+                                charity_description={charity.charity_description}
+                                donateLink={charity.donateLink}
+                                charityId={charity.id}
+                            />
+                        ))}
+                    </div>
+                </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
 
 export default OpenDonations;

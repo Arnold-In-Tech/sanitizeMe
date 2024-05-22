@@ -1,0 +1,86 @@
+h1{
+  text-align: center;
+}
+.container{
+    width: 50%;
+    margin: auto;
+    background-color: #fff;
+}
+.container-charity {
+    width: 90%;
+    margin: auto;
+    background-color: #d5e4d6;
+  }
+
+  .charity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .charity-card {
+    background-color: rgb(220, 228, 212);
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+    width: 80%;
+    height: 80%
+  }
+
+  .charity-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .charity-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .charity-caption {
+    padding: 16px;
+  }
+
+  .charity-caption h3 {
+    margin: 0 0 8px;
+    font-size: 1.25em;
+    color: #333;
+  }
+
+  .charity-caption p {
+    margin: 0 0 16px;
+    color: #666;
+  }
+
+  .charity-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .read-more-link {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .read-more-link:hover {
+    color: #0056b3;
+  }
+
+  .donate-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .donate-button:hover {
+    background-color: #218838;
+  }
