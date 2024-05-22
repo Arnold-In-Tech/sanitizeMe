@@ -215,11 +215,19 @@ class Charity_stories(Resource):
 
 
 # List of charities associated to a specific donor (myCharities)
-## GET /myCharities/<int:id>
+## GET /myCharities 
 class Donor_charities(Resource):
-    def get(self, id):
-        charities = Charity.query.filter(Charity.donor_id == id).all()
-        if charities:
+    def get(self):
+        if session.get('administrator_id'):            
+            charities = Charity.query.filter(Charity.administrator_id == session['administrator_id']).all()
+            response = make_response(
+                [charity.to_dict() for charity in charities],
+                200,
+                {"Content-Type": "application/json"},
+            )
+            return response
+        elif session.get('donor_id'): 
+            charities = Charity.query.filter(Charity.donor_id == session['donor_id']).all()
             response = make_response(
                 [charity.to_dict() for charity in charities],
                 200,
@@ -227,12 +235,7 @@ class Donor_charities(Resource):
             )
             return response
         else:
-            response = make_response(
-                jsonify({"error": "Charities not found"}),
-                404,
-                {"Content-Type": "application/json"},
-            )
-            return response
+            return {'error': 'Unauthorized'}, 401
 
 
 api.add_resource(Home, '/', endpoint='home' )
@@ -244,7 +247,7 @@ api.add_resource(Charities, '/charities', endpoint = 'charities')
 api.add_resource(CreateCharities, '/createCharities',  endpoint='createCharities')
 api.add_resource(CharityById, '/charities/<int:id>',  endpoint='charityById')
 api.add_resource(Charity_stories, '/charityStories/<int:id>', endpoint='Charity_stories')
-api.add_resource(Donor_charities, '/myCharities/<int:id>', endpoint='Donor_charities')
+api.add_resource(Donor_charities, '/myCharities', endpoint='Donor_charities')
 
 
 if __name__ == '__main__':
