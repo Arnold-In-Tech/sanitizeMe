@@ -102,10 +102,12 @@ const Footer = () => {
         <div className="footer-col">
           <h3 className="footer-title">Our Office</h3>
           <p className="footer-text">
-            No 18 Moringa School, Ngong Lane Plaza, Nairobi <br />
-            contact@sanitizeme.co.ke<br />
-            ZIP 00100 Kenya.
-          </p>
+              The Cube, Riverside Towers, 2nd Floor
+              Riverside Drive<br />
+              Nairobi, Kenya<br />
+              contact@sanitizeme.co.ke<br />
+              +254 700 000000
+            </p>
           <div className="copyright">
             <p className="copyright-text">
               &copy; {new Date().getFullYear()} sanitizeMe. All Rights Reserved.

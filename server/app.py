@@ -11,6 +11,10 @@ from config import app, db, api
 from models import Administrator, Donor, Charity, Story
 
 
+@app.before_request
+def check_if_logged_in():
+    if (not session.get('donor_id')) and (request.endpoint == 'createCharities'): 
+        return {'error': '401 Unauthorized'}, 401
 
 class Home(Resource):
     def get(self):
@@ -96,11 +100,11 @@ class Login(Resource):
 class Logout(Resource):
     def delete(self):
         if session['donor_id']:
-            session['donor_id'] = None
-            return {}, 204
+            session.pop('donor_id', None)
+            return 'Logged out', 204
         elif session['administrator_id']:
-            session['administrator_id'] = None
-            return {}, 204
+            session.pop('administrator_id', None)
+            return 'Logged out', 204
 
         return {'error': 'Unauthorized: user is not logged in'}, 401
 
@@ -120,18 +124,31 @@ class Charities(Resource):
 
 # Create new charity
 ## POST /createCharities
-class CreateCharities(Resource):
+class CreateCharities(Resource):    
     def post(self):
         try:
             data = request.get_json()
+
+            title=data.get('title')
+            charity_description=data.get('charity_description')
+            organizer_name=data.get('organizer_name')
+            location=data.get('location')
+            period=data.get('period')
+            administrator_id=1 
+            donor_id = session.get('donor_id')  
+            status_ ="Inactive"
+            total_amount=0
+
             new_charity = Charity(
-                title=data.get('title'),
-                charity_description=data.get('charity_description'),
-                organizer_name=data.get('organizer_name'),
-                location=data.get('location'),
-                administrator_id=data.get('administrator_id'),
-                donor_id=data.get('donor_id'),
-                status = data.get('status')
+                title= title,
+                charity_description=charity_description,
+                organizer_name=organizer_name,
+                location=location,
+                period=period,
+                administrator_id= administrator_id,
+                donor_id= donor_id,
+                status = status_,
+                total_amount= total_amount
             )
             db.session.add(new_charity)
             db.session.commit()
@@ -198,11 +215,19 @@ class Charity_stories(Resource):
 
 
 # List of charities associated to a specific donor (myCharities)
-## GET /myCharities/<int:id>
+## GET /myCharities 
 class Donor_charities(Resource):
-    def get(self, id):
-        charities = Charity.query.filter(Charity.donor_id == id).all()
-        if charities:
+    def get(self):
+        if session.get('administrator_id'):            
+            charities = Charity.query.filter(Charity.administrator_id == session['administrator_id']).all()
+            response = make_response(
+                [charity.to_dict() for charity in charities],
+                200,
+                {"Content-Type": "application/json"},
+            )
+            return response
+        elif session.get('donor_id'): 
+            charities = Charity.query.filter(Charity.donor_id == session['donor_id']).all()
             response = make_response(
                 [charity.to_dict() for charity in charities],
                 200,
@@ -210,12 +235,7 @@ class Donor_charities(Resource):
             )
             return response
         else:
-            response = make_response(
-                jsonify({"error": "Charities not found"}),
-                404,
-                {"Content-Type": "application/json"},
-            )
-            return response
+            return {'error': 'Unauthorized'}, 401
 
 
 api.add_resource(Home, '/', endpoint='home' )
@@ -227,7 +247,7 @@ api.add_resource(Charities, '/charities', endpoint = 'charities')
 api.add_resource(CreateCharities, '/createCharities',  endpoint='createCharities')
 api.add_resource(CharityById, '/charities/<int:id>',  endpoint='charityById')
 api.add_resource(Charity_stories, '/charityStories/<int:id>', endpoint='Charity_stories')
-api.add_resource(Donor_charities, '/myCharities/<int:id>', endpoint='Donor_charities')
+api.add_resource(Donor_charities, '/myCharities', endpoint='Donor_charities')
 
 
 if __name__ == '__main__':
