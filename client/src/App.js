@@ -11,10 +11,6 @@ import Homepage from './components/Homepage';
 import RegisterCharity from './components/Register_charity';
 import MyCharities from './components/My_Charities'
 import AboutUs from './components/AboutUs';
-
-
-
-const HowItWorks = () => <h1>How It Works</h1>;
 import HowItWorks from './components/HowItWorks';
  
 // const HowItWorks = () => <h1>How It Works</h1>;
