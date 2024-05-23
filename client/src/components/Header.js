@@ -3,10 +3,31 @@ import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom'; 
 import { FaSignOutAlt } from "react-icons/fa";
 import { FaSignInAlt } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../App.css';
 
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(sessionStorage.loginStatus);
+  const notify = () => toast("Logged Out, Goodbye!!");
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    sessionStorage.clear();
+    
+    fetch("/logout", {
+      method: "DELETE",
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      }).then((res) => {
+        if (res.status === 204){
+          notify()
+        }else{
+          console.log(res.status, res.statusText)
+        }
+      });
+    }
 
   return (
       <nav className="nav" exact activeClassName="active">        
@@ -51,14 +72,12 @@ const Header = () => {
             <li className="nav-item" id="loginlink" style={{backgroundColor: "#900C3F"}}>
               <Link to={"/login"}
               className="login-link"
-              onClick={() => {
-                setLoggedIn(false);
-                sessionStorage.clear();
-                }}
+              onClick={handleLogout}
               > <span>{sessionStorage.users} || </span>
                 <span><FaSignOutAlt /> </span>
                  Logout
               </Link>
+              <ToastContainer />
             </li>
           ) : (
             <li className="nav-item" id="loginlink">
