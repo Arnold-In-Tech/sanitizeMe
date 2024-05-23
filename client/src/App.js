@@ -10,6 +10,7 @@ import Donations from './components/Donations';
 import Homepage from './components/Homepage';
 import RegisterCharity from './components/Register_charity';
 import MyCharities from './components/My_Charities'
+import AboutUs from './components/AboutUs';
 import HowItWorks from './components/HowItWorks';
  
 // const HowItWorks = () => <h1>How It Works</h1>;
@@ -30,7 +31,7 @@ const App = () => {
         <Route path="/createCharities" element={<RegisterCharity />} />
         <Route path="/howItWorks" element={<HowItWorks />} />
         <Route path="/myCharities" element={<MyCharities />} />
-        <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login" element={<HowItWorks />} />

@@ -1,0 +1,66 @@
+/* AboutUs.css */
+
+.container {
+  max-width: 800px; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the container */
+  padding: 20px;
+  background-color: #fff;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: blueviolet;
+
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+l1{
+    font-size: 1rem;
+    color: blueviolet;
+    
+}
+a {
+  color: blue;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: darkblue;
+}
+
+/* Style for the donate button */
+.donate-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.donate-button:hover {
+  background-color: #0056b3;
+}
