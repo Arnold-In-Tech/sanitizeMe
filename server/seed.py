@@ -24,15 +24,18 @@ with app.app_context():
     Administrator.query.delete()
     db.session.commit()
 
-     def create_admin():
-        admin = Administrator()
-        admin.firstname = "John"
-        admin.lastname = "Doe"
-        admin.email=f"{fake.unique.first_name()}.{fake.unique.last_name()}@{fake.domain_name()}",
-        admin.username = "admin"
-        admin._password_hash=bcrypt.generate_password_hash('password').decode('utf-8')
+    def create_admin():
+        print("Creating admin instances...")
+        admin = Administrator(
+            firstname="John",
+            lastname="Doe",
+            email=f"{fake.unique.first_name()}.{fake.unique.last_name()}@{fake.domain_name()}",
+            username='admin',
+            _password_hash=bcrypt.generate_password_hash('password').decode('utf-8')
+        )
         db.session.add(admin)
         db.session.commit()
+
 
     def create_charities():
         charities_data = [
@@ -43,7 +46,7 @@ with app.app_context():
                 "location": "Nairobi",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
                 "status": "Active",
-                "total_amount": 10000000,
+                "total_amount": 650000,
                 "administrator_id": 1,
                 "donor_id": 1
             },
@@ -122,7 +125,7 @@ with app.app_context():
                 "status": "Active",
                 "total_amount": 1200000,
                 "administrator_id": 1,
-                "donor_id": 8
+                "donor_id": 2
             },  
             {
                 "title": "World Wildlife Fund (WWF)",
@@ -141,9 +144,9 @@ with app.app_context():
                 "organizer_name": "Adena Kane",
                 "location": "Kiambu",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
-                "status": "Active",
-                "total_amount": 100000,
-                "administrator_id": 1,
+                "status": "Inactive",
+                "total_amount": 77000,
+                "administrator_id": 11,
                 "donor_id": 1
             },
             {
@@ -152,48 +155,48 @@ with app.app_context():
                 "organizer_name": "Jediel Kiptum",
                 "location": "Eldoret",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
-                "status": "Active",
+                "status": "Inactive",
                 "total_amount": 30000,
                 "administrator_id": 1,
-                "donor_id": 1
+                "donor_id": 12
             },
             {
-                "title": "Sanergy"
-                "charity_description": "Sanergy builds and franchises low-cost sanitation facilities while converting waste into renewable energy and organic fertilizer."
+                "title": "Sanergy",
+                "charity_description": "Sanergy builds and franchises low-cost sanitation facilities while converting waste into renewable energy and organic fertilizer.",
                 "organizer_name": "Barasa Omondi",
                 "location" : "Kisumu",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
-                "status": "Active",
+                "status": "Closed",
                 "total_amount": 250000,
                 "administrator_id": 1,
                 "donor_id": 9
             },
             {
                 "title": "Concern Worldwide Kenya",
-                "charity_description": "Concern Worldwide Kenya implements integrated water, sanitation, and hygiene (WASH) programs, aiming to alleviate poverty and improve health outcomes in vulnerable communities across Kenya."
+                "charity_description": "Concern Worldwide Kenya implements integrated water, sanitation, and hygiene (WASH) programs, aiming to alleviate poverty and improve health outcomes in vulnerable communities across Kenya.",
                 "organizer_name": "Kamau Njuguna",
                 "location" : "Kericho",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
-                "status": "Active",
+                "status": "Closed",
                 "total_amount": 100000,
                 "administrator_id": 1,
-                "donor_id": 10
+                "donor_id": 1
             },
             {
-                "title": "Africa Sand Dam Foundation"
-                "charity_description": "Africa Sand Dam Foundation constructs sand dams and promotes water harvesting techniques to improve water availability and sanitation in arid and semi-arid regions of Kenya."
+                "title": "Africa Sand Dam Foundation",
+                "charity_description": "Africa Sand Dam Foundation constructs sand dams and promotes water harvesting techniques to improve water availability and sanitation in arid and semi-arid regions of Kenya.",
                 "organizer_name": "Wafula Wambua",
                 "location" : "Nandi",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
                 "status": "Active",
                 "total_amount": 15000,
                 "administrator_id": 1,
-                "donor_id": 7
+                "donor_id": 1
 
             },
             {
-                "title": "Oxfam in Kenya"
-                "charity_description": "Oxfam in Kenya provides humanitarian assistance and supports community-based sanitation projects, focusing on vulnerable populations and marginalized communities."
+                "title": "Oxfam in Kenya",
+                "charity_description": "Oxfam in Kenya provides humanitarian assistance and supports community-based sanitation projects, focusing on vulnerable populations and marginalized communities.",
                 "organizer_name": "Mugo Githinji",
                 "location" : "Isiolo",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
@@ -203,8 +206,8 @@ with app.app_context():
                 "donor_id": 5
             },
             {
-                "title": "Western Kenya Community Driven Development and Flood Mitigation Project"
-                "charity_description": "Western Kenya Community Driven Development and Flood Mitigation Project empowers communities to manage water resources and mitigate flood-related sanitation risks in western Kenya."
+                "title": "Western Kenya Community Driven Development and Flood Mitigation Project",
+                "charity_description": "Western Kenya Community Driven Development and Flood Mitigation Project empowers communities to manage water resources and mitigate flood-related sanitation risks in western Kenya.",
                 "organizer_name": "Kariuki Waweru",
                 "location" : "Turkana",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
@@ -214,19 +217,19 @@ with app.app_context():
                 "donor_id": 12
             },
             {
-                "title": "Center for Health Solutions Kenya (CHS)"
-                "charity_description": "Center for Health Solutions Kenya (CHS) implements sanitation and hygiene programs in healthcare facilities, promoting infection prevention and control to improve health outcomes."
+                "title": "Center for Health Solutions Kenya (CHS)",
+                "charity_description": "Center for Health Solutions Kenya (CHS) implements sanitation and hygiene programs in healthcare facilities, promoting infection prevention and control to improve health outcomes.",
                 "organizer_name": "Muthoni Nyaga",
                 "location" : "Kapsabet",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
                 "status": "Active",
                 "total_amount": 160000,
                 "administrator_id": 1,
-                "donor_id": 14
+                "donor_id": 1
             },
             {
-                "title": "ChildFund Kenya"
-                "charity_description": "ChildFund Kenya integrates sanitation initiatives into child-focused development programs, aiming to improve health and well-being among children and their families."
+                "title": "ChildFund Kenya",
+                "charity_description": "ChildFund Kenya integrates sanitation initiatives into child-focused development programs, aiming to improve health and well-being among children and their families.",
                 "organizer_name": "Chemutai Kibet",
                 "location" : "Kitale",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
@@ -236,8 +239,8 @@ with app.app_context():
                 "donor_id": 4 
             },
             {
-                "title": "Maji Milele"
-                "charity_description": "Maji Milele operates water kiosks and community sanitation facilities, ensuring affordable and sustainable water and sanitation services for communities."
+                "title": "Maji Milele",
+                "charity_description": "Maji Milele operates water kiosks and community sanitation facilities, ensuring affordable and sustainable water and sanitation services for communities.",
                 "organizer_name": "Otieno Owiti",
                 "location" : "Machakos",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
@@ -247,8 +250,8 @@ with app.app_context():
                 "donor_id": 15 
             },
             {
-                "title": "Rural Water and Sanitation Support Programme (RWASSP)"
-                "charity_description": "Rural Water and Sanitation Support Programme (RWASSP) provides technical and financial support for rural water supply and sanitation projects, enhancing access to clean water and sanitation facilities."
+                "title": "Rural Water and Sanitation Support Programme (RWASSP)",
+                "charity_description": "Rural Water and Sanitation Support Programme (RWASSP) provides technical and financial support for rural water supply and sanitation projects, enhancing access to clean water and sanitation facilities.",
                 "organizer_name": "Makena Wanjiru",
                 "location" : "Nyeri",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
@@ -258,20 +261,20 @@ with app.app_context():
                 "donor_id": 20
             },
             {
-                "title": "Sustainable Aid in Africa International (SANA) Kenya"
-                "charity_description": "Sustainable Aid in Africa International (SANA) Kenya Implements sanitation projects in rural communities, focusing on community participation and capacity building."
-                "organizer_name": "Anyango Odhiambo"
+                "title": "Sustainable Aid in Africa International (SANA) Kenya",
+                "charity_description": "Sustainable Aid in Africa International (SANA) Kenya Implements sanitation projects in rural communities, focusing on community participation and capacity building.",
+                "organizer_name": "Anyango Odhiambo",
                 "location" : "Nyahururu",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
                 "status": "Active",
                 "total_amount": 220000,
                 "administrator_id": 1,
-                "donor_id": 19
+                "donor_id": 11
             },
             {
 
-                "title": "Nairobi City Water and Sewerage Company"
-                "charity_description": "Nairobi City Water and Sewerage Company manages water and sewerage services in Nairobi, ensuring access to clean water and proper sanitation facilities for residents."
+                "title": "Nairobi City Water and Sewerage Company",
+                "charity_description": "Nairobi City Water and Sewerage Company manages water and sewerage services in Nairobi, ensuring access to clean water and proper sanitation facilities for residents.",
                 "organizer_name": "Kiptoo Kiprop",
                 "location" : "Nyahururu",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
@@ -281,19 +284,19 @@ with app.app_context():
                 "donor_id": 17
             },
             {
-                "title": "Amref Health Africa"
-                "charity_description": "Amref Health Africa implements community-led sanitation projects, emphasizing behavior change, hygiene promotion, and infrastructure development."
+                "title": "Amref Health Africa",
+                "charity_description": "Amref Health Africa implements community-led sanitation projects, emphasizing behavior change, hygiene promotion, and infrastructure development.",
                 "organizer_name": "Nyaga Mwangi",
                 "location" : "Uasin Gishu",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
-                "status": "Active",
+                "status": "Inactive",
                 "total_amount": 45000,
                 "administrator_id": 1,
-                "donor_id": 18
+                "donor_id": 1
             },
             {
-                "title": "Water & Sanitation for the Urban Poor (WSUP) Kenya"
-                "charity_description": "Water & Sanitation for the Urban Poor (WSUP) Kenya implements water and sanitation projects in urban slums, aiming to improve living conditions and health outcomes."
+                "title": "Water & Sanitation for the Urban Poor (WSUP) Kenya",
+                "charity_description": "Water & Sanitation for the Urban Poor (WSUP) Kenya implements water and sanitation projects in urban slums, aiming to improve living conditions and health outcomes.",
                 "organizer_name": "Njeri Kamau",
                 "location" : "Juja",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
@@ -303,8 +306,8 @@ with app.app_context():
                 "donor_id": 20
             },
             {
-                "title": "Sanitation and Water for All Kenya"
-                "charity_description": "Sanitation and Water for All Kenya advocates for improved sanitation policies and works towards achieving universal access to water and sanitation in Kenya."
+                "title": "Sanitation and Water for All Kenya",
+                "charity_description": "Sanitation and Water for All Kenya advocates for improved sanitation policies and works towards achieving universal access to water and sanitation in Kenya.",
                 "organizer_name": "Chege Maina",
                 "location" : "Nakuru",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
@@ -314,8 +317,8 @@ with app.app_context():
                 "donor_id": 7 
             },
             {
-                "title": "Sanergy"
-                "charity_description": "Sanergy builds and franchises low-cost sanitation facilities while converting waste into renewable energy and organic fertilizer."
+                "title": "Sanergy",
+                "charity_description": "Sanergy builds and franchises low-cost sanitation facilities while converting waste into renewable energy and organic fertilizer.",
                 "organizer_name": "Barasa Omondi",
                 "location" : "Vihiga",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
@@ -363,10 +366,10 @@ with app.app_context():
                 "organizer_name": "Samuel Ndungu",
                 "location": "Nakuru",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
-                "status": "Active",
+                "status": "Closed",
                 "total_amount": 100000,
                 "administrator_id": 1,
-                "donor_id": 9
+                "donor_id": 1
             },
             {
                 "title": "Kenya Food Bank",
@@ -418,10 +421,10 @@ with app.app_context():
                 "organizer_name": "Esther Nyambura",
                 "location": "Eldoret",
                 "period": str(datetime.strptime(f"{fake.date_between(start_date='-1y', end_date='today')}", '%Y-%m-%d').strftime("%d %B, %Y")) + " - " + str(datetime.strptime(f"{fake.date_between(start_date='today', end_date='+3y')}", '%Y-%m-%d').strftime("%d %B, %Y")),
-                "status": "Active",
+                "status": "Closed",
                 "total_amount": 90000,
                 "administrator_id": 1,
-                "donor_id": 14
+                "donor_id": 1
             },
             {
                 "title": "Kenya Environmental Conservation Alliance",
@@ -552,8 +555,9 @@ with app.app_context():
 
 
     def create_donor_seed():
+        print("Creating donor instances...")
         donors_data =[
-            {"firstname": "Chris ", "lastname": "Bolick", "username": "chrisBolick", "password": "password123", "amount": 20000},
+            {"firstname": "Valerie ", "lastname": "Bolick", "username": "Valerie", "password": "Val123$", "amount": 20000},
             {"firstname": "Joey", "lastname": "Stony", "username": "Joeystony", "password": "password456", "amount": 100000},
             {"firstname": "Faith", "lastname": "Atieno", "username": "faithatieno", "password": "password234", "amount": 200000},
             {"firstname": "Kiraitu", "lastname": "Murungi", "username": "kiraitu", "password": "password456", "amount": 50000},
@@ -572,14 +576,14 @@ with app.app_context():
             {"firstname": "Isabella", "lastname": "Garcia", "username": "isabellagarcia", "password": "password852", "amount": 250000},
             {"firstname": "Jacob", "lastname": "Miller", "username": "jacobmiller", "password": "password159", "amount": 180000},
             {"firstname": "Emma", "lastname": "Davis", "username": "emmadavis", "password": "password753", "amount": 110000},
-            {"firstname": "Daniel", "lastname": "kamau", "username": "daniellopez", "password": "password159", "amount": 60000},
-            {"firstname": "Sophie", "lastname": "Smith", "username": "sophiesmith", "password": "password852", "amount": 300000},
-            {"firstname": "Oliver", "lastname": "Johnson", "username": "oliverjohnson", "password": "password159", "amount": 240000},
-            {"firstname": "Ava", "lastname": "Brown", "username": "avabrown", "password": "password753", "amount": 70000},
+            {"firstname": "Daniel", "lastname": "kamau", "username": "daniellopez", "password": "password1159", "amount": 60000},            
+            {"firstname": "Sophie", "lastname": "Smit", "username": "sophiesmith", "password": "password852", "amount": 300000},
+            {"firstname": "Oliver", "lastname": "Johnon", "username": "oliverjohnson", "password": "password2159", "amount": 240000},
+            {"firstname": "Ava", "lastname": "Bron", "username": "avabrown", "password": "password753", "amount": 70000},
             {"firstname": "Matthew", "lastname": "Clark", "username": "matthewclark", "password": "password456", "amount": 280000},
             {"firstname": "Chloe", "lastname": "Anderson", "username": "chloeanderson", "password": "password789", "amount": 90000},
             {"firstname": "Benjamin", "lastname": "Thompson", "username": "benthompson", "password": "password123", "amount": 160000},
-            {"firstname": "Mia", "lastname": "Thomas", "username": "miathomas", "password": "password456", "amount": 220000},
+            {"firstname": "Mia", "lastname": "Thoma", "username": "miathomas", "password": "password456", "amount": 220000},
             {"firstname": "William", "lastname": "Harris", "username": "williamharris", "password": "password987", "amount": 75000},
             {"firstname": "Natalie", "lastname": "Young", "username": "natalieyoung", "password": "password321", "amount": 110000},
             {"firstname": "Andrew", "lastname": "King", "username": "andrewking", "password": "password852", "amount": 85000},
@@ -592,19 +596,23 @@ with app.app_context():
             donor = Donor(
                 firstname=donor_info["firstname"],
                 lastname=donor_info["lastname"],
+                email=f"{fake.unique.first_name()}.{fake.unique.last_name()}@{fake.domain_name()}",
                 username=donor_info["username"],
-                password_hash=donor_info["password"],  
-                amount=donor_info["amount"]
+                _password_hash=bcrypt.generate_password_hash(donor_info["password"]).decode('utf-8'), 
+                anonymous=fake.boolean(), 
+                amount=donor_info["amount"]  
             )
             db.session.add(donor)
         db.session.commit()
 
+
     def seed_stories():
+        print("Creating story instances...")
         stories_data = [
             {
                 "beneficiary_name": "mutunga school",
                 "beneficiary_story": "The Education for All Scholarship Fund extends heartfelt gratitude to our donors whose contributions have transformed lives. Through your generosity, we've been able to award scholarships to deserving students, empowering them to pursue their dreams of higher education. Your support has opened doors of opportunity for talented individuals from diverse backgrounds, allowing them to excel academically and contribute positively to society. Together, we're making education accessible and creating a brighter future for our communities.",
-                "charity_id": 7
+                "charity_id": 1
             },
             {
                 "beneficiary_name": "Communities Affected by Disasters",
@@ -618,42 +626,42 @@ with app.app_context():
             },
             {
                 "beneficiary_name":"Vulnerable Children in Nakuru",
-                "Beneficiary Story" : "NACCER's unwavering commitment to protecting and nurturing vulnerable children has made a lasting impact on the community of Nakuru. By providing a safe haven for children who have experienced abuse, neglect, or exploitation, NACCER offers them a second chance at life, filled with love, support, and opportunities for healing. Through its comprehensive approach to rehabilitation and prevention, NACCER not only transforms individual lives but also strengthens families and fosters a culture of compassion and resilience.",
+                "beneficiary_story" : "NACCER's unwavering commitment to protecting and nurturing vulnerable children has made a lasting impact on the community of Nakuru. By providing a safe haven for children who have experienced abuse, neglect, or exploitation, NACCER offers them a second chance at life, filled with love, support, and opportunities for healing. Through its comprehensive approach to rehabilitation and prevention, NACCER not only transforms individual lives but also strengthens families and fosters a culture of compassion and resilience.",
                 "charity_id": 5 
             },
             {
                 "beneficiary_name":" Mercy Mwende",
-                "Beneficiary Story" :"Thanks to The Education for All Scholarship, James Mukami's dreams of pursuing higher education have become a reality. Growing up in a low-income household, James faced numerous obstacles on his path to academic success. However, with the support of the scholarship, he has been able to enroll in university and pursue his passion for computer science. The scholarship not only covers James's tuition fees but also provides him with mentorship and resources to excel in his studies. With determination and hard work, James is determined to make the most of this opportunity and build a better future for himself and his family. The Education for All Scholarship has not only transformed James's life but also empowered him to inspire others in his community to strive for academic excellence and pursue their dreams.",
-                "charity_id": 7
+                "beneficiary_story" :"Thanks to The Education for All Scholarship, James Mukami's dreams of pursuing higher education have become a reality. Growing up in a low-income household, James faced numerous obstacles on his path to academic success. However, with the support of the scholarship, he has been able to enroll in university and pursue his passion for computer science. The scholarship not only covers James's tuition fees but also provides him with mentorship and resources to excel in his studies. With determination and hard work, James is determined to make the most of this opportunity and build a better future for himself and his family. The Education for All Scholarship has not only transformed James's life but also empowered him to inspire others in his community to strive for academic excellence and pursue their dreams.",
+                "charity_id": 1
             },
             {
-                "Beneficiary Name": "Sarah Wambui",
-                "Beneficiary Story": "Sarah Wambui's journey at The Royal Seed Orphanage is a testament to the transformative power of love and support. Orphaned at a young age and facing uncertain prospects, Sarah found solace and hope within the walls of The Royal Seed Orphanage. Here, she not only found a safe haven but also discovered a nurturing community that believed in her potential. With guidance from the dedicated staff and volunteers, Sarah flourished academically, emotionally, and socially. The Royal Seed Orphanage provided her with access to quality education, nutritious meals, and opportunities for personal growth. Today, Sarah is a confident and resilient young woman, ready to embark on new adventures and pursue her dreams. The Royal Seed Orphanage has not only given Sarah a second chance at life but also empowered her to create a brighter future for herself and inspire others with her resilience and determination.",
-                "charity_id": 6
+                "beneficiary_name": "Sarah Wambui",
+                "beneficiary_story": "Sarah Wambui's journey at The Royal Seed Orphanage is a testament to the transformative power of love and support. Orphaned at a young age and facing uncertain prospects, Sarah found solace and hope within the walls of The Royal Seed Orphanage. Here, she not only found a safe haven but also discovered a nurturing community that believed in her potential. With guidance from the dedicated staff and volunteers, Sarah flourished academically, emotionally, and socially. The Royal Seed Orphanage provided her with access to quality education, nutritious meals, and opportunities for personal growth. Today, Sarah is a confident and resilient young woman, ready to embark on new adventures and pursue her dreams. The Royal Seed Orphanage has not only given Sarah a second chance at life but also empowered her to create a brighter future for herself and inspire others with her resilience and determination.",
+                "charity_id": 1
             },
             {
-                "Beneficiary Name": "Daniel Ochieng",
-                "Beneficiary Story": "Daniel Ochieng's journey with the Food for Education Organization-Kenya (FEOK) is a testament to the transformative impact of access to education and nutritious meals. Growing up in a disadvantaged community where daily meals were often a luxury, Daniel faced immense challenges in pursuing his education. However, with the support of FEOK's initiatives, his life took a positive turn. FEOK provided Daniel with daily nutritious meals at school, ensuring that hunger no longer hindered his ability to learn. Moreover, through FEOK's educational programs, Daniel received additional support, including textbooks, school supplies, and academic tutoring. With determination and perseverance, Daniel excelled in his studies and graduated at the top of his class. Today, he aspires to become a doctor and give back to his community. FEOK's commitment to providing food and education to children like Daniel has not only changed individual lives but also uplifted entire communities, breaking the cycle of poverty and empowering future generations to thrive.",
+                "beneficiary_name": "Daniel Ochieng",
+                "beneficiary_story": "Daniel Ochieng's journey with the Food for Education Organization-Kenya (FEOK) is a testament to the transformative impact of access to education and nutritious meals. Growing up in a disadvantaged community where daily meals were often a luxury, Daniel faced immense challenges in pursuing his education. However, with the support of FEOK's initiatives, his life took a positive turn. FEOK provided Daniel with daily nutritious meals at school, ensuring that hunger no longer hindered his ability to learn. Moreover, through FEOK's educational programs, Daniel received additional support, including textbooks, school supplies, and academic tutoring. With determination and perseverance, Daniel excelled in his studies and graduated at the top of his class. Today, he aspires to become a doctor and give back to his community. FEOK's commitment to providing food and education to children like Daniel has not only changed individual lives but also uplifted entire communities, breaking the cycle of poverty and empowering future generations to thrive.",
                 "charity_id": 3
             },{
-                 "Beneficiary Name":'Jane Wanjiku',
-                 "Beneficiary Story":"Jane Wanjiku, a single mother from a rural village in Kiambu County, faced hardships providing for her family due to limited opportunities. Through Kiambu County Women's Association (KIACOWA), Jane received training in tailoring. With determination, she started her own business, creating garments and offering alteration services. With KIACOWA's support, Jane's business thrived, improving her family's livelihood. Today, Jane is a successful entrepreneur and an advocate for women's empowerment, inspiring others in her community. Thanks to KIACOWA, Jane's journey showcases the transformative impact of empowerment and community support.",
+                 "beneficiary_name":'Jane Wanjiku',
+                 "beneficiary_story":"Jane Wanjiku, a single mother from a rural village in Kiambu County, faced hardships providing for her family due to limited opportunities. Through Kiambu County Women's Association (KIACOWA), Jane received training in tailoring. With determination, she started her own business, creating garments and offering alteration services. With KIACOWA's support, Jane's business thrived, improving her family's livelihood. Today, Jane is a successful entrepreneur and an advocate for women's empowerment, inspiring others in her community. Thanks to KIACOWA, Jane's journey showcases the transformative impact of empowerment and community support.",
                  "charity_id": 10
             },
             {
-                "Beneficiary Name": "John Kiprop",
-                "Beneficiary Story":"John Kiprop, a father from Eldoret, faced a daunting diagnosis of cancer. With limited resources and overwhelming fear, he found solace and support through the MTRH Friends of Cancer Patients Support Group. With their guidance and assistance, John received vital resources and emotional support during his treatment at Moi Teaching and Referral Hospital. Today, John is a cancer survivor, grateful for the support that helped him navigate his journey with strength and resilience. His story is a testament to the impact of community support in the fight against cancer.",
+                "beneficiary_name": "John Kiprop",
+                "beneficiary_story":"John Kiprop, a father from Eldoret, faced a daunting diagnosis of cancer. With limited resources and overwhelming fear, he found solace and support through the MTRH Friends of Cancer Patients Support Group. With their guidance and assistance, John received vital resources and emotional support during his treatment at Moi Teaching and Referral Hospital. Today, John is a cancer survivor, grateful for the support that helped him navigate his journey with strength and resilience. His story is a testament to the impact of community support in the fight against cancer.",
                 "charity_id": 11
             },
             {
                 "beneficiary_name": "Amina Ali",
-                "beneficiary_story": "Amina Ali, a young girl from a marginalized community, faced numerous challenges in accessing education. ChildFund Kenya stepped in to provide Amina with the necessary school supplies and support. Amina's academic performance improved significantly, and she began to excel in her studies. With ChildFund Kenya's ongoing support, Amina is now on track to complete her education and pursue her dreams. Her success story
+                "beneficiary_story": "Amina Ali, a young girl from a marginalized community, faced numerous challenges in accessing education. ChildFund Kenya stepped in to provide Amina with the necessary school supplies and support. Amina's academic performance improved significantly, and she began to excel in her studies. With ChildFund Kenya's ongoing support, Amina is now on track to complete her education and pursue her dreams. Her success story",
                 "charity_id": 20
-            }   
+            },   
              {
                 "beneficiary_name": "Lilian Achieng",
                 "beneficiary_story": "Lilian Achieng's life changed dramatically when she received support from the Habitat for Humanity. Living in substandard housing, Lilian and her three children faced numerous health and safety challenges. Habitat for Humanity built a new, secure home for Lilian, providing her family with a stable foundation. With a safe place to live, Lilian was able to focus on her job and her children's education, leading to significant improvements in their quality of life. This new home has not only given them security but also hope for a brighter future.",
-                "charity_id": 22
+                "charity_id": 1
              },
              {
                 "beneficiary_name": "Moses Mwangi",
@@ -681,86 +689,71 @@ with app.app_context():
                 "charity_id": 15
             },
             {
-                "Beneficiary Name": "Amina Juma",
-                "Beneficiary Story": "Amina Juma's life took a hopeful turn when she became a part of the Light of Hope Children's Home. Orphaned and vulnerable, Amina faced a bleak future. However, the compassionate care at the children's home provided her with a stable and loving environment. Through personalized attention and a focus on holistic development, Amina thrived academically and personally. The home ensured she had access to quality education, healthcare, and emotional support. Today, Amina is a university student studying social work, driven by a desire to help other children in need. The Light of Hope Children's Home not only gave Amina a second chance but also instilled in her the values of empathy and community service.",
+                "beneficiary_name": "Amina Juma",
+                "beneficiary_story": "Amina Juma's life took a hopeful turn when she became a part of the Light of Hope Children's Home. Orphaned and vulnerable, Amina faced a bleak future. However, the compassionate care at the children's home provided her with a stable and loving environment. Through personalized attention and a focus on holistic development, Amina thrived academically and personally. The home ensured she had access to quality education, healthcare, and emotional support. Today, Amina is a university student studying social work, driven by a desire to help other children in need. The Light of Hope Children's Home not only gave Amina a second chance but also instilled in her the values of empathy and community service.",
                 "charity_id": 7
             },
             {
-                "Beneficiary Name": "Joseph Mwangi",
-                "Beneficiary Story": "Joseph Mwangi's path changed significantly with the support of the Nairobi Community Development Initiative (NCDI). Growing up in the impoverished neighborhoods of Nairobi, Joseph faced numerous challenges, including lack of access to basic necessities and education. NCDI's intervention provided him with scholarships, mentorship, and essential life skills training. This support enabled Joseph to complete his secondary education and enroll in a technical college, where he is now pursuing a diploma in electrical engineering. Joseph's success story is a powerful example of how targeted community development programs can break the cycle of poverty and create lasting change.",
+                "beneficiary_name": "Joseph Mwangi",
+                "beneficiary_story": "Joseph Mwangi's path changed significantly with the support of the Nairobi Community Development Initiative (NCDI). Growing up in the impoverished neighborhoods of Nairobi, Joseph faced numerous challenges, including lack of access to basic necessities and education. NCDI's intervention provided him with scholarships, mentorship, and essential life skills training. This support enabled Joseph to complete his secondary education and enroll in a technical college, where he is now pursuing a diploma in electrical engineering. Joseph's success story is a powerful example of how targeted community development programs can break the cycle of poverty and create lasting change.",
                 "charity_id": 8
             },
             {
-                "Beneficiary Name": "Mary Atieno",
-                "Beneficiary Story": "Mary Atieno, a widow with three children, found herself struggling to provide for her family after the loss of her husband. The Women for Women Empowerment Organization (WFWEO) stepped in, offering Mary vocational training in baking and small business management. With their guidance, Mary started a successful bakery business in her community. Her newfound skills and confidence not only improved her family's financial stability but also allowed her to become a role model for other women facing similar hardships. Today, Mary employs several women in her bakery, promoting economic empowerment and self-reliance within her community.",
+                "beneficiary_name": "Mary Atieno",
+                "beneficiary_story": "Mary Atieno, a widow with three children, found herself struggling to provide for her family after the loss of her husband. The Women for Women Empowerment Organization (WFWEO) stepped in, offering Mary vocational training in baking and small business management. With their guidance, Mary started a successful bakery business in her community. Her newfound skills and confidence not only improved her family's financial stability but also allowed her to become a role model for other women facing similar hardships. Today, Mary employs several women in her bakery, promoting economic empowerment and self-reliance within her community.",
                 "charity_id": 9
             },
             {
-                "Beneficiary Name": "Peter Njoroge",
-                "Beneficiary Story": "Peter Njoroge's life was transformed by the Kenya Children’s Fund (KCF). Abandoned at a young age, Peter was living on the streets, facing daily hardships and dangers. KCF rescued him, providing a safe home and access to education. With the support of caring mentors and teachers, Peter excelled in school and discovered his passion for music. KCF nurtured his talent, and today, Peter is a promising musician, using his art to inspire and uplift others. His journey from the streets to a hopeful future highlights the critical role of compassionate interventions in changing the lives of vulnerable children.",
+                "beneficiary_name": "Peter Njoroge",
+                "beneficiary_story": "Peter Njoroge's life was transformed by the Kenya Children’s Fund (KCF). Abandoned at a young age, Peter was living on the streets, facing daily hardships and dangers. KCF rescued him, providing a safe home and access to education. With the support of caring mentors and teachers, Peter excelled in school and discovered his passion for music. KCF nurtured his talent, and today, Peter is a promising musician, using his art to inspire and uplift others. His journey from the streets to a hopeful future highlights the critical role of compassionate interventions in changing the lives of vulnerable children.",
                 "charity_id": 12
             },
             {
-                "Beneficiary Name": "Fatuma Abdallah",
-                "Beneficiary Story": "Fatuma Abdallah's struggle with chronic illness made everyday life a challenge. Living in a remote village with limited access to healthcare, she often felt isolated and hopeless. The Healthcare Access Project (HAP) reached out to Fatuma, providing her with regular medical check-ups, medication, and health education. The consistent medical care significantly improved her quality of life. Fatuma is now able to manage her condition effectively and actively participate in community activities. Her story demonstrates the profound impact of accessible healthcare services on individual well-being and community vitality.",
+                "beneficiary_name": "Fatuma Abdallah",
+                "beneficiary_story": "Fatuma Abdallah's struggle with chronic illness made everyday life a challenge. Living in a remote village with limited access to healthcare, she often felt isolated and hopeless. The Healthcare Access Project (HAP) reached out to Fatuma, providing her with regular medical check-ups, medication, and health education. The consistent medical care significantly improved her quality of life. Fatuma is now able to manage her condition effectively and actively participate in community activities. Her story demonstrates the profound impact of accessible healthcare services on individual well-being and community vitality.",
                 "charity_id": 13
             },
             {
-                "Beneficiary Name": "Grace Muthoni",
-                "Beneficiary Story": "Grace Muthoni's life took a positive turn when she joined the Brighter Futures Initiative (BFI). Growing up in a marginalized community with limited access to education, Grace faced significant barriers to realizing her potential. However, BFI's scholarship program provided her with the opportunity to attend school and pursue her dreams. With determination and hard work, Grace excelled academically and became the first person in her family to graduate from university. Today, she works as a teacher, inspiring other young girls to pursue education and break free from the cycle of poverty. Grace's journey exemplifies the transformative power of education and the importance of investing in the future of marginalized youth.",
+                "beneficiary_name": "Grace Muthoni",
+                "beneficiary_story": "Grace Muthoni's life took a positive turn when she joined the Brighter Futures Initiative (BFI). Growing up in a marginalized community with limited access to education, Grace faced significant barriers to realizing her potential. However, BFI's scholarship program provided her with the opportunity to attend school and pursue her dreams. With determination and hard work, Grace excelled academically and became the first person in her family to graduate from university. Today, she works as a teacher, inspiring other young girls to pursue education and break free from the cycle of poverty. Grace's journey exemplifies the transformative power of education and the importance of investing in the future of marginalized youth.",
                 "charity_id": 14
             },
             {
-                "Beneficiary Name": "Sophia Chepkoech",
-                "Beneficiary Story": "Sophia Chepkoech's journey with the Rural Women's Empowerment Initiative (RWEI) is a testament to the resilience of women in rural areas. As a young widow struggling to provide for her children, Sophia faced numerous challenges, including lack of access to financial resources and market opportunities for her agricultural products. RWEI provided her with training in modern farming techniques, access to microloans, and links to local markets. With determination and the support of RWEI, Sophia transformed her small farm into a thriving enterprise, becoming a successful agripreneur in her community. Today, she mentors other women, sharing her knowledge and empowering them to achieve economic independence. Sophia's story highlights the critical role of women's empowerment initiatives in building sustainable rural economies.",
+                "beneficiary_name": "Sophia Chepkoech",
+                "beneficiary_story": "Sophia Chepkoech's journey with the Rural Women's Empowerment Initiative (RWEI) is a testament to the resilience of women in rural areas. As a young widow struggling to provide for her children, Sophia faced numerous challenges, including lack of access to financial resources and market opportunities for her agricultural products. RWEI provided her with training in modern farming techniques, access to microloans, and links to local markets. With determination and the support of RWEI, Sophia transformed her small farm into a thriving enterprise, becoming a successful agripreneur in her community. Today, she mentors other women, sharing her knowledge and empowering them to achieve economic independence. Sophia's story highlights the critical role of women's empowerment initiatives in building sustainable rural economies.",
                 "charity_id": 16
             },
             {
-                "Beneficiary Name": "Elijah Musyoka",
-                "Beneficiary Story": "Elijah Musyoka's life was marred by substance abuse until he found hope through the Hope and Recovery Center (HRC). Battling addiction and mental health issues, Elijah struggled to maintain stable employment and relationships. HRC provided him with comprehensive rehabilitation services, including counseling, detoxification, and vocational training. With the support of HRC's dedicated staff, Elijah successfully completed his treatment and transitioned to independent living. Today, he works as a peer counselor at HRC, offering guidance and support to others on the path to recovery. Elijah's journey is a testament to the transformative power of rehabilitation and the importance of community-based mental health services.",
+                "beneficiary_name": "Elijah Musyoka",
+                "beneficiary_story": "Elijah Musyoka's life was marred by substance abuse until he found hope through the Hope and Recovery Center (HRC). Battling addiction and mental health issues, Elijah struggled to maintain stable employment and relationships. HRC provided him with comprehensive rehabilitation services, including counseling, detoxification, and vocational training. With the support of HRC's dedicated staff, Elijah successfully completed his treatment and transitioned to independent living. Today, he works as a peer counselor at HRC, offering guidance and support to others on the path to recovery. Elijah's journey is a testament to the transformative power of rehabilitation and the importance of community-based mental health services.",
                 "charity_id": 17
             },
             {
-                "Beneficiary Name": "David Kimani",
-                "Beneficiary Story": "David Kimani's life was forever changed by the intervention of the Urban Youth Empowerment Program (UYEP). Born and raised in a crime-ridden neighborhood, David faced pressure to join local gangs and engage in illegal activities. UYEP provided him with an alternative path through mentorship, vocational training, and job placement services. David discovered a passion for carpentry and, with UYEP's support, started his own furniture-making business. He now employs other at-risk youth from his community, offering them a chance to rebuild their lives. David's story illustrates the transformative impact of providing opportunities and support to disadvantaged youth, empowering them to become agents of positive change.",
+                "beneficiary_name": "David Kimani",
+                "beneficiary_story": "David Kimani's life was forever changed by the intervention of the Urban Youth Empowerment Program (UYEP). Born and raised in a crime-ridden neighborhood, David faced pressure to join local gangs and engage in illegal activities. UYEP provided him with an alternative path through mentorship, vocational training, and job placement services. David discovered a passion for carpentry and, with UYEP's support, started his own furniture-making business. He now employs other at-risk youth from his community, offering them a chance to rebuild their lives. David's story illustrates the transformative impact of providing opportunities and support to disadvantaged youth, empowering them to become agents of positive change.",
                 "charity_id": 15
             },
             {
-                "Beneficiary Name": "Youth for Change",
-                "Beneficiary Story": "Youth for Change is a youth-led movement dedicated to promoting social justice, equality, and human rights in local communities. Through advocacy campaigns, educational workshops, and community service projects, young people are mobilized to address pressing issues such as gender inequality, racial discrimination, and access to education. By empowering youth to become agents of change, Youth for Change inspires a new generation of leaders committed to building a more just and equitable society. Their collective efforts demonstrate the power of youth activism in driving positive social change.",
+                "beneficiary_name": "Youth for Change",
+                "beneficiary_story": "Youth for Change is a youth-led movement dedicated to promoting social justice, equality, and human rights in local communities. Through advocacy campaigns, educational workshops, and community service projects, young people are mobilized to address pressing issues such as gender inequality, racial discrimination, and access to education. By empowering youth to become agents of change, Youth for Change inspires a new generation of leaders committed to building a more just and equitable society. Their collective efforts demonstrate the power of youth activism in driving positive social change.",
                 "charity_id": 23
             },
             {
-                "Beneficiary Name": "Peter Omondi",
-                "Beneficiary Story": "Peter Omondi, a young student from a disadvantaged background, dreamt of pursuing higher education but lacked the financial means to do so. Through the Education for All Scholarship Fund, Peter was awarded a scholarship that covered his tuition fees and living expenses. With access to quality education, Peter excelled academically and graduated with honors. Today, he works as a teacher, inspiring other young people to pursue their dreams. Peter's story illustrates the life-changing impact of scholarships in unlocking the potential of bright and motivated students from underserved communities.",
+                "beneficiary_name": "Peter Omondi",
+                "beneficiary_story": "Peter Omondi, a young student from a disadvantaged background, dreamt of pursuing higher education but lacked the financial means to do so. Through the Education for All Scholarship Fund, Peter was awarded a scholarship that covered his tuition fees and living expenses. With access to quality education, Peter excelled academically and graduated with honors. Today, he works as a teacher, inspiring other young people to pursue their dreams. Peter's story illustrates the life-changing impact of scholarships in unlocking the potential of bright and motivated students from underserved communities.",
                 "charity_id": 7
             },
             {
-                "Beneficiary Name": "Grace Achieng",
-                "Beneficiary Story": "Grace Achieng, a single mother living in a Nairobi slum, faced numerous challenges in providing for her children. With support from the Western Kenya Community Driven Development and Flood Mitigation Project, Grace received training in tailoring and started her own small business. Through hard work and determination, Grace expanded her business and improved her family's living conditions. Today, she is a role model in her community, inspiring other women to pursue their entrepreneurial dreams. Grace's journey highlights the power of community-driven initiatives in empowering individuals to break the cycle of poverty and build better futures for themselves and their families.",
+                "beneficiary_name": "Grace Achieng",
+                "beneficiary_story": "Grace Achieng, a single mother living in a Nairobi slum, faced numerous challenges in providing for her children. With support from the Western Kenya Community Driven Development and Flood Mitigation Project, Grace received training in tailoring and started her own small business. Through hard work and determination, Grace expanded her business and improved her family's living conditions. Today, she is a role model in her community, inspiring other women to pursue their entrepreneurial dreams. Grace's journey highlights the power of community-driven initiatives in empowering individuals to break the cycle of poverty and build better futures for themselves and their families.",
                 "charity_id": 22
             },
             {
-                "Beneficiary Name": "Lucy Chepkoech",
-                "Beneficiary Story": "Lucy Chepkoech, a talented athlete from a rural village in Kenya, faced numerous obstacles in pursuing her passion for running. With support from the Rural Water and Sanitation Support Programme (RWASSP), Lucy gained access to clean water and sanitation facilities, improving her health and well-being. With renewed energy and determination, Lucy trained tirelessly and eventually represented her country in international competitions. Today, she is a celebrated athlete and a source of inspiration for young girls across Africa. Lucy's journey exemplifies the transformative power of access to basic amenities in unlocking individual potential and achieving dreams.",
+                "beneficiary_name": "Lucy Chepkoech",
+                "beneficiary_story": "Lucy Chepkoech, a talented athlete from a rural village in Kenya, faced numerous obstacles in pursuing her passion for running. With support from the Rural Water and Sanitation Support Programme (RWASSP), Lucy gained access to clean water and sanitation facilities, improving her health and well-being. With renewed energy and determination, Lucy trained tirelessly and eventually represented her country in international competitions. Today, she is a celebrated athlete and a source of inspiration for young girls across Africa. Lucy's journey exemplifies the transformative power of access to basic amenities in unlocking individual potential and achieving dreams.",
                 "charity_id": 20
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        ]
+            ]
         for story_data in stories_data:
             story = Story(**story_data)
             db.session.add(story)
