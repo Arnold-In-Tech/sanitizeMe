@@ -165,9 +165,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 ## Project Members
 
- - Arnold Musengeri (SM)
  - Dorcas Karimi
  - Faith Ogendi
  - Bradley Mbuvi
  - Collins Kipngetich
+ - Arnold Amusengeri (SM)
 
