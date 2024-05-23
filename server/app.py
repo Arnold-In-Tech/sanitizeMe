@@ -8,14 +8,10 @@ from sqlalchemy.exc import IntegrityError
 from flask import jsonify
 
 
-import json
-
 from config import app, db, api
 from models import Administrator, Donor, Charity, Story
 from accessToken import MpesaAccessToken, LipanaMpesaPpassword
 import requests
-
-
 
 
 class Home(Resource):
