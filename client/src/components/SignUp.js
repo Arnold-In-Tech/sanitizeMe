@@ -47,7 +47,7 @@ function SignUp() {
 
   return (
   <div className='sign-app'>
-    <div className='container'>
+    <div className='sign_container'>
       <h1> Sign Up</h1>
       <form onSubmit={formik.handleSubmit} autoComplete="off">
       
