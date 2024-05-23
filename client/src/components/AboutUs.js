@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
-import '../stylesheets/AboutUs.css';
+import "../stylesheets/AboutUs.css";
 
 function AboutUs() {
     const [answersVisible, setAnswersVisible] = useState({});
@@ -54,16 +54,15 @@ function AboutUs() {
                     <li>Support Education: Help us build schools and improve access to education for girls in sub-Saharan Africa, creating opportunities for them to thrive academically and socially.</li>
                     <li>Clean Water Initiatives: Support our efforts to provide clean water initiatives in Africa, ensuring girls have access to safe and hygienic facilities to manage their menstrual hygiene effectively.</li>
                 </ul>
-                <p><Link to="/charities" className="donate-button">Donate Now</Link> to make a difference in the lives of girls in sub-Saharan Africa!</p>
             </section>
 
             <section>
-                <img src="https://www.wvi.org/sites/default/files/styles/hero_rectangle_1280x623/public/2022-03/D200-0913-105.webp?itok=x14voapu.jpg" alt="Children Receiving Donations" style={{ maxWidth: '60%', marginBottom: '10px' }} />
+                <img src="https://www.wvi.org/sites/default/files/styles/hero_rectangle_1280x623/public/2022-03/D200-0913-105.webp?itok=x14voapu.jpg" alt="Providing clean water" style={{ maxWidth: '60%', marginBottom: '10px' }} />
                 <p>Providing clean water</p>
-                <img src="https://www.salaambaalaktrust.com/blog/wp-content/uploads/2022/02/Tax-Exemption-1024x683.jpg" alt="Children Receiving Donations" style={{ maxWidth: '60%', marginBottom: '10px' }} />
+                <img src="https://www.salaambaalaktrust.com/blog/wp-content/uploads/2022/02/Tax-Exemption-1024x683.jpg" alt="Helping Build A School" style={{ maxWidth: '60%', marginBottom: '10px' }} />
                 <p>Helping Build A School</p>
-                </section>
-
+                <p><Link to="/charities" className="donate-button">Donate Now</Link> to make a difference in the lives of girls in sub-Saharan Africa!</p>
+            </section>
 
             {/* FAQ */}
             <section id="faq">
