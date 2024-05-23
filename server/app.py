@@ -9,7 +9,8 @@ from flask import jsonify
 
 from config import app, db, api
 from models import Administrator, Donor, Charity, Story
-
+from accessToken import MpesaAccessToken, LipanaMpesaPpassword
+import requests
 
 @app.before_request
 def check_if_logged_in():
@@ -236,6 +237,46 @@ class Donor_charities(Resource):
             return response
         else:
             return {'error': 'Unauthorized'}, 401
+
+
+#payment mpesa
+@app.route('/stkpush', methods=['POST'])
+def stkpush():
+    data = request.get_json()
+    phn = int(data.get('phone_number'))
+    countryCode = '254'
+    phone = countryCode + str(phn)
+    amount = data.get('amount')
+    charity = data.get('charity')
+
+    print(f'Phone number: {phone}')
+
+    data = {
+        "BusinessShortCode": LipanaMpesaPpassword.Business_short_code,
+        "Password": LipanaMpesaPpassword.decode_password,
+        "Timestamp": LipanaMpesaPpassword.lipa_time,
+        "TransactionType": "CustomerPayBillOnline",
+        "Amount": amount,
+        "PartyA": int(phone),
+        "PartyB": LipanaMpesaPpassword.Business_short_code,
+        "PhoneNumber": int(phone),
+        "CallBackURL": "https://project.my-market.co.ke/Callback_main/callbackurl_prjct.php",
+        "AccountReference": "SANITIZE ME DONATION",
+        "TransactionDesc": "Testing stk push"
+    }
+    access_token = MpesaAccessToken.validated_mpesa_access_token
+    headers = {"Authorization": "Bearer %s" % access_token}
+    res = requests.post("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest", json=data, headers=headers)
+
+    if res.status_code == 200:
+        response_data = res.json()
+        return jsonify({
+            "message": "Success. Request accepted for processing",
+            "amount": amount,
+            "charity": charity
+        }), 200
+    else:
+        return jsonify({"error": "Failed to process the request"}), 500
 
 
 api.add_resource(Home, '/', endpoint='home' )

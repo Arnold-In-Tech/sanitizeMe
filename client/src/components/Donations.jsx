@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import lipanampesa from '../images/lipanampesa.png';
 import PayPalPayment from "./PyplPayment";
-
 
 function Donations() {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -8,30 +9,26 @@ function Donations() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    let headers = new Headers();
-    headers.append("Authorization", "Bearer cFJZcjZ6anEwaThMMXp6d1FETUxwWkIzeVBDa2hNc2M6UmYyMkJmWm9nMHFRR2xWOQ==");
-
     try {
-      const response = await fetch("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials", { headers });
-      const result = await response.text();
+      const response = await axios.post('/stkpush', {
+        phone_number: phoneNumber,
+        amount: amount,
+      });
+      alert('Payment successful!');
+      console.log(response.data);
 
-      console.log(result);
-
-      if (response.status === 200) {
-        alert('Payment successful!');
-      } else {
-        alert('Payment failed. Please try again.');
-      }
+      setPhoneNumber('');
+      setAmount('');
     } catch (error) {
       console.error(error);
-      alert('An error occurred while processing the payment. Please try again.');
+      alert('Payment failed. Please try again.');
     }
   };
 
   return (
     <div className="container">
       <h1>Make a Donation</h1>
+      <img src={lipanampesa} alt="mpesa payment"  width="200" height= "100"></img>
       <form onSubmit={handleSubmit}>
         <label htmlFor="phoneNumber">Phone Number:</label>
         <input
@@ -53,7 +50,7 @@ function Donations() {
         <br />
         <button type="submit">M-PESA Donate</button>
       </form>
-      <div style={{width: "55%"}}>
+      <div style={{width: "53%", marginRight: "-1.7rem"}}>
         <PayPalPayment/>
       </div>
     </div>
