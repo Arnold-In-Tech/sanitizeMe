@@ -14,7 +14,7 @@ function AboutUs() {
     };
 
     return (
-        <div className="container">
+        <div className="about_container">
             {/* Header */}
             <h1>About Us</h1>
             <section>
