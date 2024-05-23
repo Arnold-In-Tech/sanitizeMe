@@ -13,8 +13,6 @@ import MyCharities from './components/My_Charities'
 import AboutUs from './components/AboutUs';
 import HowItWorks from './components/HowItWorks';
  
-// const HowItWorks = () => <h1>How It Works</h1>;
-const AboutUs = () => <h1>About Us</h1>;
 
 const App = () => {
   return (
