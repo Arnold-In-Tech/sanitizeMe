@@ -17,12 +17,8 @@ const CharityDetails = () => {
 
   const fetchCharityDetails = async (charityId) => {
     try {
-<<<<<<< HEAD
-      const response = await axios.get(`http://127.0.0.1:5000/charities/${charityId}`);
-=======
       const response = await axios.get(`/charities/${charityId}`);
       console.log('Charity details:', response.data);
->>>>>>> 211c2cf4cbbe949629e00297ff5142b002fa9b51
       setCharity(response.data);
     } catch (error) {
       console.error(`Error fetching charity details: ${error.message}`);
