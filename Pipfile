@@ -17,6 +17,7 @@ flask-bcrypt = "*"
 typing-extensions = "*"
 flask-cors = "*"
 python-dotenv = "*"
+requests = "*"
 
 [dev-packages]
 
