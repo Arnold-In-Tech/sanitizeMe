@@ -1,0 +1,59 @@
+
+.register-app{
+    max-width: 52rem; 
+    margin-left: 5rem;
+}
+
+h2{
+    font-size: 1.5rem;
+    line-height: 1rem;
+    font-weight: bold; 
+    margin-bottom: 1rem;
+}
+
+.form{
+    margin-top: 1rem;
+    width: 66.666667%;
+}
+
+
+.form-item{
+    width: 100%;
+    margin-top: 1rem;
+    border-width: 1px;
+    border-radius: 10px;
+    color: #4a5568; 
+    border: 2px solid #999999;
+    padding: 0.65rem 0.5rem;
+}
+
+input:focus,
+select:focus {
+  border-color: #FADBD8;
+}
+
+input::placeholder,
+select::placeholder {
+  color: #718096; 
+}
+
+
+.btn {
+    display: block;
+    margin: 1rem 0;
+    padding: 0.55rem 0.5rem;
+    background-color: #440154;
+    opacity: 0.7; 
+    color: white;
+    border: none;
+    border-radius: 3px;
+    width: 105%;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 1;  
+}
+    

@@ -1,0 +1,37 @@
+.partners {
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f0f8ff, #e6e6fa); 
+}
+
+.partners h2 {
+  color: #000; 
+  font-weight: bold;
+}
+
+.logos-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: scroll 20s linear infinite;
+  width: calc(200px * 18); 
+}
+
+.logos img {
+  width: 200px; 
+  padding: 1rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-200px * 9)); 
+  }
+}

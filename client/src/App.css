@@ -1,0 +1,162 @@
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 0.4rem 0;
+  background-color: #440154;
+  box-shadow:0px 0px 3px;
+  box-sizing: border-box;
+  overflow-x: hidden ;
+  margin: 0;
+  font-family:'Poppins', 'sans-serif';
+}
+
+nav ul{
+  display: flex;
+  list-style-type: none;
+}
+
+nav ul li{
+  padding : 0 10px 0 10px;
+}  
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  display: block;
+  padding: 0.2rem 0.5rem;
+}
+
+.login-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  display: block;
+  padding: 0.2rem 0.5rem;
+}
+
+.nav-link:hover {
+  color: #fde725;
+  border-bottom: 3px solid #fde725;
+}
+
+.active {
+  color: #fde725;
+  border-bottom: 3px solid #fde725;
+}
+
+.leftmenu{
+  padding-right: 4rem;
+  padding-left: 0;
+  font-size:x-large;
+  font-weight:500;
+  color: white;
+} 
+
+.middlemenu :first-child{
+  padding-right: 10px;  
+}
+
+.rightmenu {
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 4rem;
+}
+
+#loginlink{
+  color: white;
+  background-color:#5ec962;
+  padding: 2px;
+  border-radius: 50px; 
+  margin: 4px;
+  font-size:small;
+  transform: scale(1, 1.2);
+}
+
+
+/* Footer styles */
+
+.footer {
+  background-color: #440154;
+  padding: 2rem 0;
+  color: white;
+  box-shadow: 0px 0px 3px;
+  font-family: 'Poppins', 'sans-serif';
+  box-sizing: border-box;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 0 1rem;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 1rem;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-item {
+  margin-bottom: 0.5rem;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  display: block;
+  padding: 0.2rem 1.5rem;
+}
+
+.footer-link:hover {
+  color: #fde725;
+}
+
+.footer-text {
+  margin: 0;
+  padding: 0.2rem 1.5rem;
+}
+
+.social-media-list {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.social-media-list .footer-item {
+  margin: 0 0.25rem; 
+}
+
+.social-media-list .footer-link {
+  font-size: 1.2rem; 
+  padding: 0.2rem;
+}
+
+.social-media-list .footer-link:hover {
+  color: #fde725;
+}
+
+.copyright-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: left;
+  color: #ffffff;
+}
