@@ -6,7 +6,7 @@ from flask import request, session, make_response, send_from_directory
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask import jsonify
-import requests
+
 
 import json
 
