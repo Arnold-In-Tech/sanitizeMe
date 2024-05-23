@@ -62,8 +62,7 @@ function AboutUs() {
                 <p>Providing clean water</p>
                 <img src="https://www.salaambaalaktrust.com/blog/wp-content/uploads/2022/02/Tax-Exemption-1024x683.jpg" alt="Children Receiving Donations" style={{ maxWidth: '60%', marginBottom: '10px' }} />
                 <p>Helping Build A School</p>
-                <img src="https://www.google.com/search?q=helping+arumbe+village+images&sca_esv=137e48d954afa8b7&sca_upv=1&ei=6RVLZr3TAZKD9u8P_Ymk-AY&ved=0ahUKEwj968u485uGAxWSgf0HHf0ECW8Q4dUDCBA&uact=5&oq=helping+arumbe+village+images&gs_lp=Egxnd3Mtd2l6LXNlcnAiHWhlbHBpbmcgYXJ1bWJlIHZpbGxhZ2UgaW1hZ2VzMgcQIRigARgKMgcQIRigARgKSN4UUIcCWKQScAF4AZABAJgBxgKgAdYOqgEDMy02uAEDyAEA-AEBmAIHoAKdD8ICChAAGLADGNYEGEeYAwCIBgGQBgiSBwUxLjMtNqAH1Ro&sclient=gws-wiz-serp#vhid=tMe3xUfzwiGH0M&vssid=l.jpg" alt="Children Receiving Donations" style={{ maxWidth: '60%', marginBottom: '10px' }} />
-            </section>
+                </section>
 
 
             {/* FAQ */}
