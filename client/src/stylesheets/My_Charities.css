@@ -1,0 +1,129 @@
+
+.my-container{
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.my-heading{
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    font-weight: 700;
+    font-size: 1.5rem; 
+    line-height: 1rem; 
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+  
+.arm-around{
+    width:50px; 
+    height: auto;    
+    margin-right: 1rem;
+}
+
+.my-charity-grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem; 
+    row-gap: 0.5rem; 
+    padding: 0.5rem; 
+}
+
+.my-charity-list{
+    border-width: 1px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+.my-charity-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.my-charity-title{
+    font-size: 1.125rem; 
+    line-height: 0rem; 
+    font-weight: 600;
+    margin-bottom: -0.1rem;
+}
+
+.my-status-amount-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.2rem;
+    margin-bottom: -7rem;
+}
+
+.my-amount-container{
+    line-height: 0.8rem;
+}
+
+.my-active{
+    font-size: 2rem; 
+}
+
+.my-inactive{
+    font-size: 2rem;
+    color: rgb(75 85 99); 
+}
+
+.my-closed-icon{
+    font-size: 1.6rem; 
+    font-weight: 700;
+    color: rgb(234 88 12);
+}
+
+.my-closed {
+    text-decoration-line: line-through;
+}
+
+.my-grand-total{
+    font-size: 2.125rem; 
+    line-height: 1rem; 
+    margin-left: 1rem;
+}
+
+.my-gtotal-icon{
+    font-size: 4rem;
+}
+
+.my-lower-panel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+    margin-top: -2rem;
+}
+
+.my-grand-total{
+    margin-right: 4rem;
+    align-items: center;    
+}
+
+.my-keys{
+    margin-left: 8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    padding-top: 2rem;
+}
+
+.my-active-name{
+    padding-right: 2rem;
+    padding-top: 1rem;
+}
+
+.my-inactive-name{
+    padding-right: 2rem;
+    padding-top: 1rem;
+}
+
+.my-closed-name{
+    padding-right: 2rem;
+    padding-top: 1.3rem;
+}

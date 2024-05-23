@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import '../stylesheets/Opendonations.css';
 import images from '../images';
+=======
+import '../App.css';
+import womenhealth from '../images/womenhealth.jpg';
+>>>>>>> 211c2cf4cbbe949629e00297ff5142b002fa9b51
 
 function CharityCard({ title, charity_description, charityId }) {
   const limitDescription = (description, limit = 20) => {

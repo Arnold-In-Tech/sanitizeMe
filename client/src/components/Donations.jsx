@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
 import lipanampesa from '../images/lipanampesa.png';
+=======
+import PayPalPayment from "./PyplPayment";
+
+>>>>>>> 211c2cf4cbbe949629e00297ff5142b002fa9b51
 
 function Donations() {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -47,8 +52,11 @@ function Donations() {
           required
         />
         <br />
-        <button type="submit">Donate</button>
+        <button type="submit">M-PESA Donate</button>
       </form>
+      <div style={{width: "55%"}}>
+        <PayPalPayment/>
+      </div>
     </div>
   );
 }

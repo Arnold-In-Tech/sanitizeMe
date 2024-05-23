@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import CharityCard from './CharityCard';
+<<<<<<< HEAD
 import '../stylesheets/Opendonations.css'
+=======
+import '../App.css';
+>>>>>>> 211c2cf4cbbe949629e00297ff5142b002fa9b51
 import SearchBar from './SearchBar';
 
 function OpenDonations() {
@@ -8,7 +12,7 @@ function OpenDonations() {
 
     useEffect(() => {
         // Fetch charities data from database
-        fetch('http://127.0.0.1:5000/charities')
+        fetch('/charities')
             .then(response => response.json())
             .then(data => setCharities(data))
             .catch(error => console.error('Error fetching charities:', error));
