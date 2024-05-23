@@ -2,7 +2,7 @@
   text-align: center;
   padding: 5rem 1rem;
   background: #FADCD9;
-  margin-top:-25px; 
+  margin-top:-2rem; 
 }
 
 .error {
@@ -36,9 +36,20 @@ nav h3:hover {
   color: white;
 }
 
-.container {
+.sign_container {
   background: #D5E8D4; 
   width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.about_container{
+  background: #D5E8D4; 
+  width: 75%;
   display: flex;
   justify-content: center;
   align-items: center;

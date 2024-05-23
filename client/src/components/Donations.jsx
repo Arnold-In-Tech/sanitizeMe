@@ -26,7 +26,7 @@ function Donations() {
   };
 
   return (
-    <div className="container">
+    <div className="sign_container">
       <h1>Make a Donation</h1>
       <img src={lipanampesa} alt="mpesa payment"  width="200" height= "100"></img>
       <form onSubmit={handleSubmit}>
@@ -50,7 +50,7 @@ function Donations() {
         <br />
         <button type="submit">M-PESA Donate</button>
       </form>
-      <div style={{width: "53%", marginRight: "-1.7rem"}}>
+      <div className='paypalbutton' style={{width: "66%", marginRight: "-1.2rem"}}>
         <PayPalPayment/>
       </div>
     </div>
