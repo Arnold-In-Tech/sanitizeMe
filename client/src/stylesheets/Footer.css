@@ -1,0 +1,21 @@
+
+.Footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+.Footer div {
+  flex: 1;
+}
+
+.Footer h4 {
+  margin-bottom: 10px;
+}
+
+.Footer p {
+  margin: 0;
+}

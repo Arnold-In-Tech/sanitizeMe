@@ -9,7 +9,7 @@ function HowItWorks() {
         <div>
             <div className="works">
                 <div className="right-side">
-                    <img src={howitworks} className="works-image" />
+                    <img src={howitworks} className="works-image" alt="How it works img" />
                 </div>
                 <div className="left-side">
                     <div className="the-best">
