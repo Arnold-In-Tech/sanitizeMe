@@ -7,14 +7,14 @@ h1{
     background-color: #fff;
 }
 .container-charity {
-    width: 90%;
+    width: 100;
     margin: auto;
-    background-color: #d5e4d6;
+    background-color: white;
   }
 
   .charity-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-top: 20px;
   }
@@ -26,10 +26,8 @@ h1{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.2s;
-    width: 80%;
-    height: 80%
-  }
 
+  }
   .charity-card:hover {
     transform: translateY(-5px);
   }
@@ -82,5 +80,5 @@ h1{
   }
 
   .donate-button:hover {
-    background-color: #218838;
+    background-color: #bee2c5;
   }

@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
-import womenhealth from '../images/womenhealth.jpg';
-import '../stylesheets/Opendonations.css'
-
+import '../stylesheets/Opendonations.css';
+import images from '../images';
 
 const CharityDetails = () => {
   const { id: charityId } = useParams();
-  console.log('Charity ID:', charityId);
   const [charity, setCharity] = useState(null);
   const [charityStories, setCharityStories] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const randomImage = images[Math.floor(Math.random() * images.length)];
+  console.log(randomImage)
+
+
   const fetchCharityDetails = async (charityId) => {
-    console.log('Fetching charity details for ID:', charityId);
     try {
       const response = await axios.get(`http://127.0.0.1:5000/charities/${charityId}`);
-      console.log('Charity details:', response.data);
       setCharity(response.data);
     } catch (error) {
       console.error(`Error fetching charity details: ${error.message}`);
@@ -27,7 +26,6 @@ const CharityDetails = () => {
   };
 
   const fetchCharityStories = async (charityId) => {
-    console.log('Fetching charity stories for ID:', charityId);
     try {
       const response = await fetch(`http://127.0.0.1:5000/charityStories/${charityId}`);
       const data = await response.json();
@@ -46,21 +44,31 @@ const CharityDetails = () => {
     Promise.all([fetchCharityDetails(parseInt(charityId, 10)), fetchCharityStories(parseInt(charityId, 10))]).then(() => {
       setLoading(false);
     });
-    console.log('Charity ID:', charityId);
   }, [charityId]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   if (charity) {
     return (
-      <div>
+      <div className="charity-details">
         <figure className="charity-card">
-            <img src={womenhealth} alt="women health" className="charity-image" />
-            <figcaption className="charity-caption"></figcaption>
-            </figure>
+          <img src={randomImage} alt="charity" className="charity-image" />
+
+            <h3>{charity[0].title}</h3>
+            <p>{charity[0].charity_description}</p>
+
+        </figure>
+
         <h1>{charity[0].title}</h1>
         <p>{charity[0].charity_description}</p>
 
-        <h1> Beneficiary Stories</h1>
+        <h1>Beneficiary Stories</h1>
         <ul>
           {charityStories.map((story) => (
             <li key={story.id}>
@@ -75,6 +83,8 @@ const CharityDetails = () => {
       </div>
     );
   }
-}
+
+  return null;
+};
 
 export default CharityDetails;
