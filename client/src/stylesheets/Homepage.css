@@ -5,6 +5,8 @@
     min-height: 100vh; 
     display: flex;
     flex-direction: column;
+    margin-top: -2.0rem;
+  
   }
   
   .message-container {
@@ -16,7 +18,7 @@
     background-image: url('../assets/katt-yukawa-K0E6E0a0R3A-unsplash.jpg'); 
     background-size: cover;
     background-position: center;
-    width: 100%;
+    width: 95.3%;
     padding: 5rem 2rem; 
   }
   

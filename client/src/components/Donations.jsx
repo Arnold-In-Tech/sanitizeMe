@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PayPalPayment from "./PyplPayment";
 
 
 function Donations() {
@@ -50,8 +51,11 @@ function Donations() {
           required
         />
         <br />
-        <button type="submit">Donate</button>
+        <button type="submit">M-PESA Donate</button>
       </form>
+      <div style={{width: "55%"}}>
+        <PayPalPayment/>
+      </div>
     </div>
   );
 }

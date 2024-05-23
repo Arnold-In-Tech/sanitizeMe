@@ -15,6 +15,10 @@ import AboutUs from './components/AboutUs';
 
 
 const HowItWorks = () => <h1>How It Works</h1>;
+import HowItWorks from './components/HowItWorks';
+ 
+// const HowItWorks = () => <h1>How It Works</h1>;
+const AboutUs = () => <h1>About Us</h1>;
 
 const App = () => {
   return (
@@ -34,6 +38,7 @@ const App = () => {
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<HowItWorks />} />
         {/* <Route path="/partners" element={<Partners />} /> */}
 
       </Routes>
