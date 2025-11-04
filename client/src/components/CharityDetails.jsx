@@ -71,7 +71,7 @@ const CharityDetails = () => {
 
         <h1>Beneficiary Stories</h1>
         <ul>
-          {charityStories.map((story) => (
+          {Array.isArray(charityStories) && charityStories.map((story) => (
             <li key={story.id}>
               <h2>{story.beneficiary_name}</h2>
               <p>{story.beneficiary_story}</p>

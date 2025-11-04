@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from dotenv import load_dotenv
+import logging
 load_dotenv()
 
 from flask import request, session, make_response, send_from_directory
@@ -14,7 +15,7 @@ import requests
 
 @app.before_request
 def check_if_logged_in():
-    if (not session.get('donor_id')) and (request.endpoint == 'createCharities'): 
+    if (not session.get('donor_id')) and (request.endpoint == 'createCharities'):
         return {'error': '401 Unauthorized'}, 401
 
 class Home(Resource):
@@ -31,8 +32,8 @@ def not_found(e):
 class Signup(Resource):
     def post(self):
         json = request.get_json()
-        print(json)  
-        
+        print(json)
+
         firstname = json.get('firstname')
         lastname = json.get('lastname')
         username = json.get('username')
@@ -48,7 +49,7 @@ class Signup(Resource):
             email = email,
             anonymous = anonymous,
             amount = amount
-            )          
+            )
         new_user.password_hash = password
         try:
             db.session.add(new_user)
@@ -125,7 +126,7 @@ class Charities(Resource):
 
 # Create new charity
 ## POST /createCharities
-class CreateCharities(Resource):    
+class CreateCharities(Resource):
     def post(self):
         try:
             data = request.get_json()
@@ -135,8 +136,8 @@ class CreateCharities(Resource):
             organizer_name=data.get('organizer_name')
             location=data.get('location')
             period=data.get('period')
-            administrator_id=1 
-            donor_id = session.get('donor_id')  
+            administrator_id=1
+            donor_id = session.get('donor_id')
             status_ ="Inactive"
             total_amount=0
 
@@ -196,10 +197,11 @@ class CharityById(Resource):
 
 # List of beneficiary stories for a specific charity
 ## GET /charityStories/<int:id>
-class Charity_stories(Resource):
+class charity_stories(Resource):
     def get(self, id):
         stories = Story.query.filter(Story.charity_id == id).all()
         if stories:
+            logging.debug(f"Retrieved {len(stories)} stories for charity ID {id}")
             response = make_response(
                 [story.to_dict() for story in stories],
                 200,
@@ -216,10 +218,10 @@ class Charity_stories(Resource):
 
 
 # List of charities associated to a specific donor (myCharities)
-## GET /myCharities 
+## GET /myCharities
 class Donor_charities(Resource):
     def get(self):
-        if session.get('administrator_id'):            
+        if session.get('administrator_id'):
             charities = Charity.query.filter(Charity.administrator_id == session['administrator_id']).all()
             response = make_response(
                 [charity.to_dict() for charity in charities],
@@ -227,7 +229,7 @@ class Donor_charities(Resource):
                 {"Content-Type": "application/json"},
             )
             return response
-        elif session.get('donor_id'): 
+        elif session.get('donor_id'):
             charities = Charity.query.filter(Charity.donor_id == session['donor_id']).all()
             response = make_response(
                 [charity.to_dict() for charity in charities],
